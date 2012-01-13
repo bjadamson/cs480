@@ -1,0 +1,12 @@
+Authors:
+	Benjamin Adamson
+	Joseph Bott
+	Wesley Kos
+
+Written in C#, using the Mono Compiler.
+
+To Compile:
+	In the root directory, type 'make all'
+
+To Run:
+	In the root directory, type 'make run'
