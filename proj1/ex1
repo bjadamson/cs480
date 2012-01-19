@@ -1,2 +1,1 @@
-: HELLO CR ." Hello World";
-HELLO
+." Hello World" CR bye
