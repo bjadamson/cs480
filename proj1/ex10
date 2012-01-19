@@ -1,0 +1,2 @@
+: convertint
+s>d d.s ;

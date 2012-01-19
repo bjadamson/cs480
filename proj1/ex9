@@ -1,0 +1,8 @@
+: ex9 { -- }
+6 0 ?DO
+i 
+s>d 
+d.
+LOOP ;
+
+-- not sure if this one is correct.

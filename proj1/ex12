@@ -1,0 +1,1 @@
+: fib recursive dup 0 = IF else dup 1 = IF else 1 - dup fib swap 1 - fib + endif endif ;
