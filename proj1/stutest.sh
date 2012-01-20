@@ -4,7 +4,7 @@
 # Purpose: Program to produce stutest.out for assignent 1
 
 echo > stutest.out
-echo "Exercise 1 (printf("Hello World\n");)" >> stutest.out
+echo "Exercise 1 (printf('Hello World\n');)" >> stutest.out
 gforth ex1 >> stutest.out
 echo >> stutest.out
 
@@ -41,13 +41,39 @@ gforth ex9 >> stutest.out
 echo >> stutest.out
 
 echo "Exercise 10 (double convertint(int x) { return ((double)x); })" >> stutest.out
-gforth ex10 -e "17 convertint d.s CR BYE" >> stutest.out
+echo "Test one, converting 0 (edge case), expected output: 0." >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex10 -e "0 convertint f. CR BYE" >> stutest.out
+echo "Test two, converting 1 (edge case), expected output: 1." >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex10 -e "1 convertint f. CR BYE" >> stutest.out
+echo "Test three, converting 13, expected output: 13." >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex10 -e "13 convertint f. CR BYE" >> stutest.out
 echo >> stutest.out
 
 echo "Exercise 11 (int fact(int i) { if (i <= 0 ) return 1; else return i*fact(i-1); })" >> stutest.out
-gforth ex11 -e "5 fact . CR BYE" >> stutest.out
+echo "Test one, calling factorial on 0 (edge case), expected output: 1" >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex11 -e "0 fact . CR BYE" >> stutest.out
+echo "Test two, calling factorial on 1 (edge case), exptected output: 1" >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex11 -e "1 fact . CR BYE" >> stutest.out
+echo "Test three, calling factorial on 11, expected output: 39916800." >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex11 -e "11 fact . CR BYE" >> stutest.out
 echo >> stutest.out
 
 echo "Exercise 12 (int fib(int i) { if(i == 0) return 0; else if(i == 1) return 1; else return fib(i-1) + fib(i-2); })" >> stutest.out
-gforth ex12 -e "9 fib . CR BYE"  >> stutest.out
+echo "Test one, calling fib on 0 (edge case), expected output: 0" >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex12 -e "0 fib . CR BYE"  >> stutest.out
+echo "Test two, calling fib on 1 (edge case), expected output: 1" >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex12 -e "1 fib . CR BYE"  >> stutest.out
+echo "Test three, calling fib on 8, expected output: 21" >> stutest.out
+echo "Actual result:" >> stutest.out
+gforth ex12 -e "8 fib . CR BYE"  >> stutest.out
 echo >> stutest.out
+
+chmod 770 stutest.out

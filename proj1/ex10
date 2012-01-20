@@ -1,3 +1,2 @@
 : convertint
-s>d 
-d.s ;
+s>f ;
