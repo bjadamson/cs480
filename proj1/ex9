@@ -1,8 +1,8 @@
-: ex9 { -- }
+: ex9
 6 0 ?DO
-i 
-s>d 
-d.
+i
+.
 LOOP ;
-
--- not sure if this one is correct.
+ex9
+CR
+bye

@@ -1,2 +1,4 @@
 : prob8 5 3 > if 7 else 2 endif ;
-.s
+prob8 .
+CR
+bye
