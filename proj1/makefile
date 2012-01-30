@@ -1,7 +1,9 @@
 clean:
 	rm -f "stutest.out"
+	rm -f "n-ary-tree.out"
 
 stutest.out:
+	gcc n-ary-tree.c -o n-ary-tree.out
 	chmod 770 ./stutest.sh
 	./stutest.sh
 
