@@ -2,20 +2,23 @@ using System;
 
 namespace Tokens
 {
+    public enum TokenType { Keyword, Operator, Identifier, String };
+
 	public class Token
 	{
 		// Properties
-		public Token token { get; private set; }
-		public Expr expr { get; private set; }		
+        public string Key { get; set; }
+        public TokenType Type { get; set; }
 
-		public Token(Token tk)
+		public Token(string key, TokenType type)
 		{
-			token = tk;
+            Key = key;
+            Type = type;
 		}
 
 		public Token(Expr expression)
 		{
-			expr = expression;
+			
 		}	
 
 	}
