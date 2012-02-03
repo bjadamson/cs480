@@ -14,6 +14,7 @@ namespace MilestoneTwo
     {
         static void Main(string[] args)
         {
+			Console.WriteLine("{0}\n", Environment.OSVersion.ToString());
             Scanner scanner = new Scanner();
             List<string> lines = new List<string>();
             string actualString = "";
@@ -52,42 +53,6 @@ namespace MilestoneTwo
                     }
                 }
             }
-
-            //File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\test.txt")
-            //    .ToList()
-            //    .ForEach(x =>
-            //        {
-            //            var stringList = x.FormatLine();
-            //            foreach (var s in stringList)
-            //            {
-            //                if (actualString != string.Empty)
-            //                {
-            //                    if (s.Contains('"'))
-            //                    {
-            //                        actualString = actualString + " " + s;
-            //                        lines.Add(actualString);
-            //                        actualString = "";
-            //                    }
-            //                    else
-            //                    {
-            //                        actualString = actualString + " " + s;
-            //                    }
-            //                }
-            //                else if (s != string.Empty)
-            //                {
-            //                    if (s.Contains('"'))
-            //                    {
-            //                        actualString = s;
-            //                    }
-            //                    else
-            //                    {
-            //                        lines.Add(s);
-            //                    }
-            //                }
-
-            //            }
-            //        }
-            //        );
 
             foreach (string s in lines)
             {
