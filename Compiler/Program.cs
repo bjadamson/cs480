@@ -6,44 +6,103 @@ using Tokens;
 using System.IO;
 using Compiler.extensions;
 using Compiler.Automatons;
+using Compiler.LexicalAnalyzer;
 
 namespace MilestoneTwo
 {
-	class Program
-	{
-		static void Main(string[] args)
-		{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Scanner scanner = new Scanner();
             List<string> lines = new List<string>();
+            string actualString = "";
+            List<Token> tokenList = new List<Token>();
 
-            File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "\\test.txt")
-                .ToList()
-                .ForEach(x =>
+            var fileContents = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\test.txt");
+
+            foreach (string content in fileContents)
+            {
+                var stringList = content.FormatLine();
+                foreach (var s in stringList)
+                {
+                    if (actualString != string.Empty)
                     {
-                        var stringList = x.FormatLine();
-                        foreach (var s in stringList)
+                        if (s.Contains('"'))
                         {
-                            if (s != string.Empty)
-                            {
-                                lines.Add(s);
-                            }
+                            actualString = actualString + " " + s;
+                            lines.Add(actualString);
+                            actualString = " ";
+                        }
+                        else
+                        {
+                            actualString = actualString + " " + s;
                         }
                     }
-                    );
-
-            foreach(string s in lines)
-            {
-                if (OperatorAutomaton.Parse(s))
-                {
-                    // Need to create op token with type = operator, value = string
-                    Token token = new Token(s, TokenType.Operator);
+                    else if (s != string.Empty)
+                    {
+                        if (s.Contains('"'))
+                        {
+                            actualString = s;
+                        }
+                        else
+                        {
+                            lines.Add(s);
+                        }
+                    }
                 }
-                else if (KeywordAutomaton.Parse(s))
-                {
-                    // derpina
-                    Token token = new Token(s, TokenType.Keyword);
-                }
-                
             }
-		}
-	}
+
+            //File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\test.txt")
+            //    .ToList()
+            //    .ForEach(x =>
+            //        {
+            //            var stringList = x.FormatLine();
+            //            foreach (var s in stringList)
+            //            {
+            //                if (actualString != string.Empty)
+            //                {
+            //                    if (s.Contains('"'))
+            //                    {
+            //                        actualString = actualString + " " + s;
+            //                        lines.Add(actualString);
+            //                        actualString = "";
+            //                    }
+            //                    else
+            //                    {
+            //                        actualString = actualString + " " + s;
+            //                    }
+            //                }
+            //                else if (s != string.Empty)
+            //                {
+            //                    if (s.Contains('"'))
+            //                    {
+            //                        actualString = s;
+            //                    }
+            //                    else
+            //                    {
+            //                        lines.Add(s);
+            //                    }
+            //                }
+
+            //            }
+            //        }
+            //        );
+
+            foreach (string s in lines)
+            {
+                var token = scanner.ParseToken(s);
+                if (token == null)
+                {
+                    Console.WriteLine("You scrwered yo' shait up son'");
+                }
+                else
+                {
+                    Console.WriteLine("key:{0}, value:{1}", token.Key, token.Type);
+                    tokenList.Add(token);
+                }
+            }
+            Console.ReadLine();
+        }
+    }
 }

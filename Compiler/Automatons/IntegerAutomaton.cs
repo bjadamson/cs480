@@ -10,16 +10,7 @@ namespace Compiler.Automatons
         public static bool Parse(string s)
         {
             int result;
-            int.TryParse(s, out result);
-
-            if (result != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return int.TryParse(s, out result);
         }
     }
 }

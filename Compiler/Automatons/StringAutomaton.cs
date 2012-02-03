@@ -9,28 +9,17 @@ namespace Compiler.Automatons
     {
         public static bool Parse(string s)
         {
-            var totalQuotes = 0;
-            foreach (char c in s)
+            if (s.Contains('"'))
             {
-                if(c.Equals('\\'))
-                {
-                    continue;
-                }
-                if (c.Equals('"'))
-                {
-                    totalQuotes++;
-                    continue;
-                }
-                if(totalQuotes == 2)
+                s.Remove(s.IndexOf('"'));
+                if (s.Contains('"'))
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
             }
+            
             return false;
+            
         }
     }
 }

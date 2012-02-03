@@ -9,8 +9,8 @@ namespace Compiler.Automatons
     {
         public static bool Parse(string s)
         {
-            var x = s.Remove(' ');
-            switch (x.FirstOrDefault())
+            //var x = s.Remove(' ');
+            switch (s.FirstOrDefault())
             {
                 case '+':
                 case '-':
