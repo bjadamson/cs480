@@ -12,6 +12,26 @@ namespace MilestoneTwo
 {
     class Program
     {
+		/// <summary>
+		/// Automatically figures out the correct path depending on which platform you are on and gets the contents of the file
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <returns></returns>
+		static IEnumerable<string> GetFileContents(string filename)
+		{
+			string fullFilePath = AppDomain.CurrentDomain.BaseDirectory;
+
+			//var fileContents = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\test.txt");
+
+			if (Environment.OSVersion.ToString().Contains("Windows")) {
+				fullFilePath += @"..\..\" + filename;
+			} else {
+				// assume unix
+				fullFilePath += filename;
+			}
+
+			return File.ReadAllLines(fullFilePath);
+		}
         static void Main(string[] args)
         {
 			Console.WriteLine("{0}\n", Environment.OSVersion.ToString());
@@ -20,7 +40,7 @@ namespace MilestoneTwo
             string actualString = "";
             List<Token> tokenList = new List<Token>();
 
-            var fileContents = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\test.txt");
+			var fileContents = GetFileContents("test.txt");
 
             foreach (string content in fileContents)
             {
