@@ -13,7 +13,8 @@ namespace Compiler.Automatons
         {
             RegisteredKeywords = new List<string>()
             {
-                "int", "bool", "real", "string", ""
+                "int", "bool", "real", "string", 
+                "println", "if", "while", "let", "assign"
             };
         }
 

@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Automatons\BooleanAutomaton.cs" />
+    <Compile Include="Automatons\IntegerAutomaton.cs" />
     <Compile Include="Automatons\KeywordAutomaton.cs" />
     <Compile Include="Automatons\OperatorAutomaton.cs" />
+    <Compile Include="Automatons\RealAutomaton.cs" />
+    <Compile Include="Automatons\StringAutomaton.cs" />
     <Compile Include="extensions\StringExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
