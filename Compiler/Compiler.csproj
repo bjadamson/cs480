@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Automatons\KeywordAutomaton.cs" />
+    <Compile Include="Automatons\OperatorAutomaton.cs" />
+    <Compile Include="extensions\StringExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tokens\assign.cs" />
