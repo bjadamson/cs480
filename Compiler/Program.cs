@@ -30,7 +30,7 @@ namespace MilestoneTwo
                     {
                         if (s.Contains('"'))
                         {
-                            actualString = actualString + " " + s;
+                            actualString += " " + s;
                             lines.Add(actualString);
                             actualString = " ";
                         }
