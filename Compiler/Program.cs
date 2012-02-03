@@ -10,8 +10,63 @@ using Compiler.LexicalAnalyzer;
 
 namespace MilestoneTwo
 {
-    class Program
+    internal class Program
     {
+		/// <summary>
+		/// Entry-point for the application
+		/// </summary>
+		/// <param name="args">command arguments</param>
+        static void Main(string[] args)
+        {
+            Scanner scanner = new Scanner();
+            List<string> lines = new List<string>();
+            string actualString = "";
+            List<Token> tokenList = new List<Token>();
+
+			StringBuilder sb = null;
+
+            foreach (string content in GetFileContents("test.txt"))
+            {
+				var stringList = content.Tokenize()
+					.Where(s => s != string.Empty);
+
+                foreach (var s in stringList) 
+				{
+					if (sb != null) {
+						sb.Append(" " + s);
+						if (s.Contains('"')) {
+							lines.Add(sb.ToString());
+							sb = null;
+						}
+					}
+                    else
+                    {
+                        if (s.Contains('"')) {
+							sb = new StringBuilder(s);
+                        } else {
+                            lines.Add(s);
+                        }
+                    }
+                }
+            }
+
+            foreach (string s in lines)
+            {
+                var token = scanner.ParseToken(s);
+                if (token == null)
+                {
+                    Console.WriteLine("You screwed yo' shait up son'");
+                }
+                else
+                {
+                    Console.WriteLine("key:{0}, value:{1}", token.Key, token.Type);
+                    tokenList.Add(token);
+                }
+            }
+            Console.ReadLine();
+        }
+
+
 		/// <summary>
 		/// Automatically figures out the correct path depending on which platform you are on and gets the contents of the file
 		/// </summary>
@@ -32,62 +87,5 @@ namespace MilestoneTwo
 
 			return File.ReadAllLines(fullFilePath);
 		}
-        static void Main(string[] args)
-        {
-			Console.WriteLine("{0}\n", Environment.OSVersion.ToString());
-            Scanner scanner = new Scanner();
-            List<string> lines = new List<string>();
-            string actualString = "";
-            List<Token> tokenList = new List<Token>();
-
-			var fileContents = GetFileContents("test.txt");
-
-            foreach (string content in fileContents)
-            {
-                var stringList = content.FormatLine();
-                foreach (var s in stringList)
-                {
-                    if (actualString != string.Empty)
-                    {
-                        if (s.Contains('"'))
-                        {
-                            actualString = actualString + " " + s;
-                            lines.Add(actualString);
-                            actualString = " ";
-                        }
-                        else
-                        {
-                            actualString = actualString + " " + s;
-                        }
-                    }
-                    else if (s != string.Empty)
-                    {
-                        if (s.Contains('"'))
-                        {
-                            actualString = s;
-                        }
-                        else
-                        {
-                            lines.Add(s);
-                        }
-                    }
-                }
-            }
-
-            foreach (string s in lines)
-            {
-                var token = scanner.ParseToken(s);
-                if (token == null)
-                {
-                    Console.WriteLine("You scrwered yo' shait up son'");
-                }
-                else
-                {
-                    Console.WriteLine("key:{0}, value:{1}", token.Key, token.Type);
-                    tokenList.Add(token);
-                }
-            }
-            Console.ReadLine();
-        }
     }
 }
