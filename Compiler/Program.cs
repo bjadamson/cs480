@@ -20,49 +20,18 @@ namespace MilestoneTwo
         {
             Scanner scanner = new Scanner();
             List<string> lines = new List<string>();
-            string actualString = "";
             List<Token> tokenList = new List<Token>();
 
-			StringBuilder sb = null;
+			string fileContents = GetFileContents("test.txt");
+			while(fileContents.Any()) {
+				tokenList.Add(scanner.ParseToken(fileContents));
 
-            foreach (string content in GetFileContents("test.txt"))
-            {
-				var stringList = content.Tokenize()
-					.Where(s => s != string.Empty);
+				scanner.RemoveTokenFromBeginning(ref fileContents, tokenList.Last());
+			}
 
-                foreach (var s in stringList) 
-				{
-					if (sb != null) {
-						sb.Append(" " + s);
-						if (s.Contains('"')) {
-							lines.Add(sb.ToString());
-							sb = null;
-						}
-					}
-                    else
-                    {
-                        if (s.Contains('"')) {
-							sb = new StringBuilder(s);
-                        } else {
-                            lines.Add(s);
-                        }
-                    }
-                }
-            }
-
-            foreach (string s in lines)
-            {
-                var token = scanner.ParseToken(s);
-                if (token == null)
-                {
-                    Console.WriteLine("You screwed yo' shait up son'");
-                }
-                else
-                {
-                    Console.WriteLine("key:{0}, value:{1}", token.Key, token.Type);
-                    tokenList.Add(token);
-                }
-            }
+			Console.WriteLine(
+				string.Join("", 
+					tokenList.Select(item => string.Format("{0} : {1}\n", item.Key, item.Type))));
             Console.ReadLine();
         }
 
@@ -72,11 +41,9 @@ namespace MilestoneTwo
 		/// </summary>
 		/// <param name="filename"></param>
 		/// <returns></returns>
-		static IEnumerable<string> GetFileContents(string filename)
+		static string GetFileContents(string filename)
 		{
 			string fullFilePath = AppDomain.CurrentDomain.BaseDirectory;
-
-			//var fileContents = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\test.txt");
 
 			if (Environment.OSVersion.ToString().Contains("Windows")) {
 				fullFilePath += @"..\..\" + filename;
@@ -85,7 +52,17 @@ namespace MilestoneTwo
 				fullFilePath += filename;
 			}
 
-			return File.ReadAllLines(fullFilePath);
+			StringBuilder result = new StringBuilder();
+			File.ReadAllLines(fullFilePath)
+				.SelectMany(c => c)
+				.ToList()
+				.ForEach(x => {
+					if (x != '(' && x != ')') {
+						result.Append(x);
+					}
+				});
+
+			return result.ToString();
 		}
     }
 }

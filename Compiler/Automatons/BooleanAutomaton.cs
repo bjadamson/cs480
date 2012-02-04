@@ -9,18 +9,7 @@ namespace Compiler.Automatons
     {
         public static bool Parse(string s)
         {
-            if (s.Equals("true"))
-            {
-                return true;
-            }
-            else if (s.Equals("false"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+			return s == true.ToString().ToLower() || s == false.ToString().ToLower();
         }
     }
 }

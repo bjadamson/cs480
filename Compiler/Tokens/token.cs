@@ -2,7 +2,7 @@ using System;
 
 namespace Tokens
 {
-    public enum TokenType { Keyword, Operator, Identifier, String, Integer, Real, Boolean };
+	public enum TokenType { Operator, Keyword, Real, Integer, Boolean, String, Identifier };
 
 	public class Token
 	{

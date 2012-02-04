@@ -5,12 +5,15 @@ using System.Text;
 
 namespace Compiler.Automatons
 {
-    class IntegerAutomaton
-    {
-        public static bool Parse(string s)
-        {
-            int result;
-            return int.TryParse(s, out result);
-        }
-    }
+	class IntegerAutomaton
+	{
+		public static bool Parse(string s)
+		{
+			// Integers's do NOT contain white space
+			if(s.Contains(' ')) { return false; }
+
+			int result;
+			return int.TryParse(s, out result);
+		}
+	}
 }

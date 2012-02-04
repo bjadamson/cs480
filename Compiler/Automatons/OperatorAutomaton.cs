@@ -9,8 +9,10 @@ namespace Compiler.Automatons
     {
         public static bool Parse(string s)
         {
-            //var x = s.Remove(' ');
-            switch (s.FirstOrDefault())
+			// For this language, operators are all ALWAYS one character.
+			if (s.Length > 1) { return false; }
+
+            switch (s.First())
             {
                 case '+':
                 case '-':
