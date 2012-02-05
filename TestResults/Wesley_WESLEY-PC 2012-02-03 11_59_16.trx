@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="782c2727-46b1-49e5-ab85-86d42e9b99f3" name="Wesley@WESLEY-PC 2012-02-03 11:59:16" runUser="Wesley-PC\Wesley" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="1c7457da-c364-4c0b-a173-21f3fede2f04">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Wesley_WESLEY-PC 2012-02-03 11_59_16">
+      <DeploymentItem filename="C:\Users\Wesley\Documents\classes\cs480\Compiler\bin\Debug\Compiler.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-02-03T11:59:16.8092452-08:00" queuing="2012-02-03T11:59:17.9613111-08:00" start="2012-02-03T11:59:18.0173143-08:00" finish="2012-02-03T11:59:18.5623455-08:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="ParseValid_Token" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="44b9ada4-33ae-03c9-0eaf-02efe8f72cd6">
+      <Execution id="783a6ab1-8d4d-4cde-ba5b-624e0f100332" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseValid_Token" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="44b9ada4-33ae-03c9-0eaf-02efe8f72cd6" executionId="783a6ab1-8d4d-4cde-ba5b-624e0f100332" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="783a6ab1-8d4d-4cde-ba5b-624e0f100332" testId="44b9ada4-33ae-03c9-0eaf-02efe8f72cd6" testName="ParseValid_Token" computerName="WESLEY-PC" duration="00:00:00.0538436" startTime="2012-02-03T11:59:18.0383155-08:00" endTime="2012-02-03T11:59:18.5223432-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="783a6ab1-8d4d-4cde-ba5b-624e0f100332">
+    </UnitTestResult>
+  </Results>
+</TestRun>

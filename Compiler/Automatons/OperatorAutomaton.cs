@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Compiler.Automatons
 {
-    static class OperatorAutomaton
+    public static class OperatorAutomaton
     {
         public static bool Parse(string s)
         {

@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="87d23e9e-a1a1-4ed6-9616-70ff253f20ed" name="Wesley@WESLEY-PC 2012-02-03 12:37:22" runUser="Wesley-PC\Wesley" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="1c7457da-c364-4c0b-a173-21f3fede2f04">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Wesley_WESLEY-PC 2012-02-03 12_37_22">
+      <DeploymentItem filename="C:\Users\Wesley\Documents\classes\cs480\Compiler\bin\Debug\Compiler.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-02-03T12:37:22.0689546-08:00" queuing="2012-02-03T12:37:22.0819554-08:00" start="2012-02-03T12:37:22.0919559-08:00" finish="2012-02-03T12:37:22.5289809-08:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="17" executed="17" passed="16" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="ParseInvalid_IdentifierToken" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="505ef0d5-4a90-262f-583a-2231ebffde1a">
+      <Execution id="052ea887-af4e-453e-8284-ca3982d1d105" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseInvalid_IdentifierToken" />
+    </UnitTest>
+    <UnitTest name="ParseValid_StringAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="ccb8a1cd-fae0-3d3e-35c4-f02eb4adc8df">
+      <Execution id="1f7fb28f-e758-438c-86c7-85f429830089" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseValid_StringAutomaton" />
+    </UnitTest>
+    <UnitTest name="ParseValid_RealAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="4f8f5349-2ef8-2d80-69e7-52426e9dabb2">
+      <Execution id="3f05fb1f-916c-4517-ba59-61ae8a248ebd" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseValid_RealAutomaton" />
+    </UnitTest>
+    <UnitTest name="ParseValid_OperatorAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="abd0cb40-9b35-e5fb-8da0-408c845fbf81">
+      <Execution id="4d0bdf75-27f3-4b6a-93cc-c1d6d8e75ae8" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseValid_OperatorAutomaton" />
+    </UnitTest>
+    <UnitTest name="ParseValid_KeywordAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="a2498060-f04d-39b6-22b1-3ce4df103b6a">
+      <Execution id="7bc2261f-7fc5-46a1-9d05-9a6572e660d4" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseValid_KeywordAutomaton" />
+    </UnitTest>
+    <UnitTest name="ParseValid_IdentifierToken" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="a0536bad-ff14-1000-c4b5-c3d69830cdf2">
+      <Execution id="b8440ffe-b85c-4c58-a942-b9b4effb1217" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseValid_IdentifierToken" />
+    </UnitTest>
+    <UnitTest name="ParseValid_BooleanToken" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="6c7091ba-5f65-8241-42f6-b5633d2a7bce">
+      <Execution id="44147639-d585-454b-b8d8-7e8e0fc10953" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseValid_BooleanToken" />
+    </UnitTest>
+    <UnitTest name="ParseInvalid_operatorAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="1d334bdc-306c-094c-b736-a678314af923">
+      <Execution id="3abf3bbe-6406-42b8-9999-311d37065bf1" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseInvalid_operatorAutomaton" />
+    </UnitTest>
+    <UnitTest name="ParseInvalid_BooleanToken" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="1a851e37-6f85-b74a-060a-dc83a0845108">
+      <Execution id="7a9b669a-fe80-4044-b85f-87f136cc9a7e" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseInvalid_BooleanToken" />
+    </UnitTest>
+    <UnitTest name="ParseLetter_RealAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="cf2bf113-0457-4a92-df97-2e311255c1d5">
+      <Execution id="9144f119-0d95-435a-a437-a5ba0840b6f7" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseLetter_RealAutomaton" />
+    </UnitTest>
+    <UnitTest name="ParseValid_IntegerToken" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="cc84c344-9da1-8e87-934f-8110ac4d7fb2">
+      <Execution id="8278f83e-e47a-48b3-87e5-2ddf496d3112" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseValid_IntegerToken" />
+    </UnitTest>
+    <UnitTest name="ParseInvalid_StringAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="ef2570ba-617b-5366-19e9-a34607fcc339">
+      <Execution id="592aa746-0a65-4dd0-b971-35c7fc11e496" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseInvalid_StringAutomaton" />
+    </UnitTest>
+    <UnitTest name="ParseInvalid_IntegerToken" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="eeab2feb-d40a-4f9f-1f5b-b9d58e9aa806">
+      <Execution id="7f25b703-58df-41ab-82ff-6a7315721146" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseInvalid_IntegerToken" />
+    </UnitTest>
+    <UnitTest name="ParseInt_RealAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="67ee6581-c325-70cf-9b7f-7fa1aad9c7dd">
+      <Execution id="433246f1-29b6-4c64-a08d-a348b57a929d" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseInt_RealAutomaton" />
+    </UnitTest>
+    <UnitTest name="ParseInvalid_KeywordAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="ce481693-a915-93b0-ad2c-c73a6aded7c8">
+      <Execution id="ea94dba9-612a-404b-ae26-2c7e8c16cec6" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseInvalid_KeywordAutomaton" />
+    </UnitTest>
+    <UnitTest name="AnalyzeTrueBoolean_Test" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="811156f8-38d4-0e73-a7f6-7b4114b9afd2">
+      <Execution id="584c1cb7-400f-49b0-9eff-6a9c3264c53d" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.LexicalAnalyzerTests.LexicalAnalyzerTest, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="AnalyzeTrueBoolean_Test" />
+    </UnitTest>
+    <UnitTest name="ParseEmptyString_RealAutomaton" storage="c:\users\wesley\documents\classes\cs480\compilertester\bin\debug\compilertester.dll" id="0bd0e4c4-8eba-9c69-df7e-099b70121255">
+      <Execution id="0b4c49f9-283b-46e6-a7ee-85a91a9f988e" />
+      <TestMethod codeBase="C:/Users/Wesley/Documents/classes/cs480/CompilerTester/bin/Debug/CompilerTester.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CompilerTester.AutomatonTests.AutomatonTester, CompilerTester, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ParseEmptyString_RealAutomaton" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="0bd0e4c4-8eba-9c69-df7e-099b70121255" executionId="0b4c49f9-283b-46e6-a7ee-85a91a9f988e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1a851e37-6f85-b74a-060a-dc83a0845108" executionId="7a9b669a-fe80-4044-b85f-87f136cc9a7e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1d334bdc-306c-094c-b736-a678314af923" executionId="3abf3bbe-6406-42b8-9999-311d37065bf1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4f8f5349-2ef8-2d80-69e7-52426e9dabb2" executionId="3f05fb1f-916c-4517-ba59-61ae8a248ebd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="505ef0d5-4a90-262f-583a-2231ebffde1a" executionId="052ea887-af4e-453e-8284-ca3982d1d105" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="67ee6581-c325-70cf-9b7f-7fa1aad9c7dd" executionId="433246f1-29b6-4c64-a08d-a348b57a929d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6c7091ba-5f65-8241-42f6-b5633d2a7bce" executionId="44147639-d585-454b-b8d8-7e8e0fc10953" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="811156f8-38d4-0e73-a7f6-7b4114b9afd2" executionId="584c1cb7-400f-49b0-9eff-6a9c3264c53d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a0536bad-ff14-1000-c4b5-c3d69830cdf2" executionId="b8440ffe-b85c-4c58-a942-b9b4effb1217" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a2498060-f04d-39b6-22b1-3ce4df103b6a" executionId="7bc2261f-7fc5-46a1-9d05-9a6572e660d4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="abd0cb40-9b35-e5fb-8da0-408c845fbf81" executionId="4d0bdf75-27f3-4b6a-93cc-c1d6d8e75ae8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cc84c344-9da1-8e87-934f-8110ac4d7fb2" executionId="8278f83e-e47a-48b3-87e5-2ddf496d3112" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ccb8a1cd-fae0-3d3e-35c4-f02eb4adc8df" executionId="1f7fb28f-e758-438c-86c7-85f429830089" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ce481693-a915-93b0-ad2c-c73a6aded7c8" executionId="ea94dba9-612a-404b-ae26-2c7e8c16cec6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cf2bf113-0457-4a92-df97-2e311255c1d5" executionId="9144f119-0d95-435a-a437-a5ba0840b6f7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eeab2feb-d40a-4f9f-1f5b-b9d58e9aa806" executionId="7f25b703-58df-41ab-82ff-6a7315721146" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ef2570ba-617b-5366-19e9-a34607fcc339" executionId="592aa746-0a65-4dd0-b971-35c7fc11e496" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="0b4c49f9-283b-46e6-a7ee-85a91a9f988e" testId="0bd0e4c4-8eba-9c69-df7e-099b70121255" testName="ParseEmptyString_RealAutomaton" computerName="WESLEY-PC" duration="00:00:00.0173257" startTime="2012-02-03T12:37:22.0949561-08:00" endTime="2012-02-03T12:37:22.3449704-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0b4c49f9-283b-46e6-a7ee-85a91a9f988e">
+    </UnitTestResult>
+    <UnitTestResult executionId="7a9b669a-fe80-4044-b85f-87f136cc9a7e" testId="1a851e37-6f85-b74a-060a-dc83a0845108" testName="ParseInvalid_BooleanToken" computerName="WESLEY-PC" duration="00:00:00.0004349" startTime="2012-02-03T12:37:22.3489706-08:00" endTime="2012-02-03T12:37:22.3549710-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7a9b669a-fe80-4044-b85f-87f136cc9a7e">
+    </UnitTestResult>
+    <UnitTestResult executionId="3abf3bbe-6406-42b8-9999-311d37065bf1" testId="1d334bdc-306c-094c-b736-a678314af923" testName="ParseInvalid_operatorAutomaton" computerName="WESLEY-PC" duration="00:00:00.0004850" startTime="2012-02-03T12:37:22.3569711-08:00" endTime="2012-02-03T12:37:22.3639715-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3abf3bbe-6406-42b8-9999-311d37065bf1">
+    </UnitTestResult>
+    <UnitTestResult executionId="3f05fb1f-916c-4517-ba59-61ae8a248ebd" testId="4f8f5349-2ef8-2d80-69e7-52426e9dabb2" testName="ParseValid_RealAutomaton" computerName="WESLEY-PC" duration="00:00:00.0005928" startTime="2012-02-03T12:37:22.3659716-08:00" endTime="2012-02-03T12:37:22.3719720-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f05fb1f-916c-4517-ba59-61ae8a248ebd">
+    </UnitTestResult>
+    <UnitTestResult executionId="052ea887-af4e-453e-8284-ca3982d1d105" testId="505ef0d5-4a90-262f-583a-2231ebffde1a" testName="ParseInvalid_IdentifierToken" computerName="WESLEY-PC" duration="00:00:00.0007500" startTime="2012-02-03T12:37:22.3769722-08:00" endTime="2012-02-03T12:37:22.3829726-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="052ea887-af4e-453e-8284-ca3982d1d105">
+    </UnitTestResult>
+    <UnitTestResult executionId="433246f1-29b6-4c64-a08d-a348b57a929d" testId="67ee6581-c325-70cf-9b7f-7fa1aad9c7dd" testName="ParseInt_RealAutomaton" computerName="WESLEY-PC" duration="00:00:00.0002810" startTime="2012-02-03T12:37:22.3869728-08:00" endTime="2012-02-03T12:37:22.3929732-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="433246f1-29b6-4c64-a08d-a348b57a929d">
+    </UnitTestResult>
+    <UnitTestResult executionId="44147639-d585-454b-b8d8-7e8e0fc10953" testId="6c7091ba-5f65-8241-42f6-b5633d2a7bce" testName="ParseValid_BooleanToken" computerName="WESLEY-PC" duration="00:00:00.0002701" startTime="2012-02-03T12:37:22.3969734-08:00" endTime="2012-02-03T12:37:22.4019737-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="44147639-d585-454b-b8d8-7e8e0fc10953">
+    </UnitTestResult>
+    <UnitTestResult executionId="584c1cb7-400f-49b0-9eff-6a9c3264c53d" testId="811156f8-38d4-0e73-a7f6-7b4114b9afd2" testName="AnalyzeTrueBoolean_Test" computerName="WESLEY-PC" duration="00:00:00.0272400" startTime="2012-02-03T12:37:22.4039738-08:00" endTime="2012-02-03T12:37:22.4379757-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="584c1cb7-400f-49b0-9eff-6a9c3264c53d">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method CompilerTester.LexicalAnalyzerTests.LexicalAnalyzerTest.AnalyzeTrueBoolean_Test threw exception: 
+System.NullReferenceException: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at CompilerTester.LexicalAnalyzerTests.LexicalAnalyzerTest.AnalyzeTrueBoolean_Test() in C:\Users\Wesley\Documents\classes\cs480\CompilerTester\LexicalAnalyzerTests\LexicalAnalyzerTest.cs:line 22
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b8440ffe-b85c-4c58-a942-b9b4effb1217" testId="a0536bad-ff14-1000-c4b5-c3d69830cdf2" testName="ParseValid_IdentifierToken" computerName="WESLEY-PC" duration="00:00:00.0002566" startTime="2012-02-03T12:37:22.4399758-08:00" endTime="2012-02-03T12:37:22.4459762-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b8440ffe-b85c-4c58-a942-b9b4effb1217">
+    </UnitTestResult>
+    <UnitTestResult executionId="7bc2261f-7fc5-46a1-9d05-9a6572e660d4" testId="a2498060-f04d-39b6-22b1-3ce4df103b6a" testName="ParseValid_KeywordAutomaton" computerName="WESLEY-PC" duration="00:00:00.0009668" startTime="2012-02-03T12:37:22.4479763-08:00" endTime="2012-02-03T12:37:22.4539766-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7bc2261f-7fc5-46a1-9d05-9a6572e660d4">
+    </UnitTestResult>
+    <UnitTestResult executionId="4d0bdf75-27f3-4b6a-93cc-c1d6d8e75ae8" testId="abd0cb40-9b35-e5fb-8da0-408c845fbf81" testName="ParseValid_OperatorAutomaton" computerName="WESLEY-PC" duration="00:00:00.0004978" startTime="2012-02-03T12:37:22.4559768-08:00" endTime="2012-02-03T12:37:22.4609770-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4d0bdf75-27f3-4b6a-93cc-c1d6d8e75ae8">
+    </UnitTestResult>
+    <UnitTestResult executionId="8278f83e-e47a-48b3-87e5-2ddf496d3112" testId="cc84c344-9da1-8e87-934f-8110ac4d7fb2" testName="ParseValid_IntegerToken" computerName="WESLEY-PC" duration="00:00:00.0003207" startTime="2012-02-03T12:37:22.4629772-08:00" endTime="2012-02-03T12:37:22.4689775-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8278f83e-e47a-48b3-87e5-2ddf496d3112">
+    </UnitTestResult>
+    <UnitTestResult executionId="1f7fb28f-e758-438c-86c7-85f429830089" testId="ccb8a1cd-fae0-3d3e-35c4-f02eb4adc8df" testName="ParseValid_StringAutomaton" computerName="WESLEY-PC" duration="00:00:00.0009059" startTime="2012-02-03T12:37:22.4709776-08:00" endTime="2012-02-03T12:37:22.4779780-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1f7fb28f-e758-438c-86c7-85f429830089">
+    </UnitTestResult>
+    <UnitTestResult executionId="ea94dba9-612a-404b-ae26-2c7e8c16cec6" testId="ce481693-a915-93b0-ad2c-c73a6aded7c8" testName="ParseInvalid_KeywordAutomaton" computerName="WESLEY-PC" duration="00:00:00.0001809" startTime="2012-02-03T12:37:22.4789781-08:00" endTime="2012-02-03T12:37:22.4839784-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea94dba9-612a-404b-ae26-2c7e8c16cec6">
+    </UnitTestResult>
+    <UnitTestResult executionId="9144f119-0d95-435a-a437-a5ba0840b6f7" testId="cf2bf113-0457-4a92-df97-2e311255c1d5" testName="ParseLetter_RealAutomaton" computerName="WESLEY-PC" duration="00:00:00.0002258" startTime="2012-02-03T12:37:22.4859785-08:00" endTime="2012-02-03T12:37:22.4909788-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9144f119-0d95-435a-a437-a5ba0840b6f7">
+    </UnitTestResult>
+    <UnitTestResult executionId="7f25b703-58df-41ab-82ff-6a7315721146" testId="eeab2feb-d40a-4f9f-1f5b-b9d58e9aa806" testName="ParseInvalid_IntegerToken" computerName="WESLEY-PC" duration="00:00:00.0002457" startTime="2012-02-03T12:37:22.4939789-08:00" endTime="2012-02-03T12:37:22.5009793-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7f25b703-58df-41ab-82ff-6a7315721146">
+    </UnitTestResult>
+    <UnitTestResult executionId="592aa746-0a65-4dd0-b971-35c7fc11e496" testId="ef2570ba-617b-5366-19e9-a34607fcc339" testName="ParseInvalid_StringAutomaton" computerName="WESLEY-PC" duration="00:00:00.0002341" startTime="2012-02-03T12:37:22.5049796-08:00" endTime="2012-02-03T12:37:22.5099799-08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="592aa746-0a65-4dd0-b971-35c7fc11e496">
+    </UnitTestResult>
+  </Results>
+</TestRun>
