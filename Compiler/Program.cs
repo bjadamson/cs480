@@ -19,7 +19,6 @@ namespace MilestoneTwo
         static void Main(string[] args)
         {
             Scanner scanner = new Scanner();
-            List<string> lines = new List<string>();
             List<Token> tokenList = new List<Token>();
 
 			string fileContents = GetFileContents("test.txt");
@@ -32,7 +31,7 @@ namespace MilestoneTwo
 
 			Console.WriteLine(
 				string.Join("", 
-					tokenList.Select(item => string.Format("{0} : {1}\n", item.Key, item.Type))));
+					tokenList.Select(item => string.Format("{0}\t:\t{1}\n", item.Key, item.Type))));
             Console.ReadLine();
         }
 
