@@ -1,7 +1,0 @@
-C:\Users\Wesley\Documents\classes\cs480\CompilerTester\bin\Debug\CompilerTester.dll
-C:\Users\Wesley\Documents\classes\cs480\CompilerTester\bin\Debug\CompilerTester.pdb
-C:\Users\Wesley\Documents\classes\cs480\CompilerTester\bin\Debug\Compiler.exe
-C:\Users\Wesley\Documents\classes\cs480\CompilerTester\bin\Debug\Compiler.pdb
-C:\Users\Wesley\Documents\classes\cs480\CompilerTester\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Wesley\Documents\classes\cs480\CompilerTester\obj\Debug\CompilerTester.dll
-C:\Users\Wesley\Documents\classes\cs480\CompilerTester\obj\Debug\CompilerTester.pdb
