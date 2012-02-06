@@ -5,23 +5,15 @@ using System.Text;
 
 namespace Compiler.Automatons
 {
-    public static class RealAutomaton
-    {
-        public static bool Parse(string s)
-        {
-                double result;
-                if (double.TryParse(s, out result) && s.Contains('.'))
-                {
-                    return true;
-                }
-                else if (s.Contains('f') && s.IndexOf('f') == (s.Length - 1))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-        }
-    }
+	public static class RealAutomaton
+	{
+		public static bool Parse(string s)
+		{
+			// Real's do NOT contain white space
+			if(s.Contains(' ')) { return false; }
+
+			double result;
+			return double.TryParse(s, out result) && s.Contains('.');
+		}
+	}
 }

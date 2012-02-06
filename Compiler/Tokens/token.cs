@@ -2,7 +2,10 @@ using System;
 
 namespace Tokens
 {
-    public enum TokenType { Keyword, Operator, Identifier, String, Integer, Real, Boolean };
+	/// <summary>
+	/// The order of this enumeration MATTERS. The sort algorithm depends on the order of these operands.
+	/// </summary>
+	public enum TokenType { Operator, Keyword, Real, Integer, Boolean, String, Identifier };
 
 	public class Token
 	{
@@ -15,11 +18,6 @@ namespace Tokens
             Key = key;
             Type = type;
 		}
-
-		public Token(Expr expression)
-		{
-			
-		}	
 
 	}
 
