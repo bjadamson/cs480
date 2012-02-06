@@ -141,7 +141,7 @@ namespace CompilerTester.AutomatonTests
 
             List<string> list = new List<string>()
             {
-                "10f", "+10.", "10.0", "-10."
+                "+10.", "10.0", "-10."
             };
 
             foreach (string s in list)
