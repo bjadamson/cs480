@@ -22,13 +22,6 @@ namespace Compiler.LexicalAnalyzer
 			s = s.TrimStart(' ');
 		}
 
-		private void RemoveParensFromString(ref string s, int startPos)
-		{
-			
-		}
-
-
-
 		/// <summary>
 		/// Parse the input string for the first token
 		/// </summary>
