@@ -89,7 +89,14 @@ namespace Compiler.LexicalAnalyzer
 
 					tokenLength++;
 					posInString++;
-					sb.Append(s.ElementAt(posInString));
+                    if (s.Length != posInString)
+                    {
+                        sb.Append(s.ElementAt(posInString));
+                    }
+                    else
+                    {
+                        sb.Append(" ");
+                    }
 				}
 
 			} while (automatonAcceptFlag);
