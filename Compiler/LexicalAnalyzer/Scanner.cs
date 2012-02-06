@@ -22,21 +22,40 @@ namespace Compiler.LexicalAnalyzer
 			s = s.TrimStart(' ');
 		}
 
+		private void RemoveParensFromString(ref string s, int startPos)
+		{
+			
+		}
+
+
 
 		/// <summary>
 		/// Parse the input string for the first token
 		/// </summary>
 		/// <param name="s"></param>
 		/// <returns></returns>
-		public Token ParseToken(string s)
-        {
+		public Token ParseToken(ref string s)
+		{
 			var listOfPossibleTypes = new List<KeyValuePair<TokenType, int>>(10);
 
 			var sb = new StringBuilder(s.First().ToString());
+			int posInString = 0;
 			int tokenLength = 0;
 			bool automatonAcceptFlag = false;
 
 			do {
+
+				if (sb[0] == '(') {
+					automatonAcceptFlag = true;
+					RemoveBeginningParens(ref s, ref sb, posInString);
+					continue;
+				}
+				else if (sb[sb.Length - 1] == ')') {
+					automatonAcceptFlag = true;
+					RemoveEndingParens(ref s, ref sb, posInString);
+					continue;
+				}
+
 				automatonAcceptFlag = false;
 
 				if (OperatorAutomaton.Parse(sb.ToString())) {
@@ -54,7 +73,7 @@ namespace Compiler.LexicalAnalyzer
 				if (RealAutomaton.Parse(sb.ToString())) {
 					listOfPossibleTypes.Add(new KeyValuePair<TokenType, int>(TokenType.Real, tokenLength));
 					automatonAcceptFlag = true;
-				}
+				}	
 				if (IntegerAutomaton.Parse(sb.ToString())) {
 					listOfPossibleTypes.Add(new KeyValuePair<TokenType, int>(TokenType.Integer, tokenLength));
 					automatonAcceptFlag = true;
@@ -69,17 +88,20 @@ namespace Compiler.LexicalAnalyzer
 				}
 
 				if (!automatonAcceptFlag && StringAutomaton.ParsePartialString(sb.ToString())) {
+
 					automatonAcceptFlag = true;
 				}
 
-
 				if (automatonAcceptFlag) {
 
-					tokenLength += automatonAcceptFlag ? 1 : 0;
-					sb.Append(s.ElementAt(tokenLength));
+					tokenLength++;
+					posInString++;
+					sb.Append(s.ElementAt(posInString));
 				}
 
 			} while (automatonAcceptFlag);
+
+
 
 			// order the possible types by the key
 			var orderedByKey = listOfPossibleTypes
@@ -94,8 +116,39 @@ namespace Compiler.LexicalAnalyzer
 			// construct the token with result
 			return new Token(
 				sb.ToString().Substring(0, result.Value + 1),
-				result.Key);            
-        }
+				result.Key);
+	
+		}
+
+		/// <summary>
+		/// This function removes the ending parens in both the string itself, as well as the StringBuilder. 
+		/// For the StringBuilder, we simply need to remove it from the end. As for the string itself, we
+		/// have to keep track of where we are in the overall string (posInString). 
+		/// </summary>
+		/// <param name="s">This is the overall string, passed by reference.</param>
+		/// <param name="sb">This is the stringbuilder.</param>
+		/// <param name="posInString">This is the position in the string.</param>
+		/// <param name="automatonAcceptFlag">This is the automationAcceptFlag, this must be true! Or else breakage will occure.</param>
+		private void RemoveEndingParens(ref string s, ref StringBuilder sb, int posInString)
+		{
+			sb = sb.Remove(sb.Length - 1, 1);
+			s = s.Remove(posInString, 1);
+			sb.Append(s.ElementAt(posInString));
+		}
+
+		/// <summary>
+		/// Removes the beginning parens in both the string itself, as well as the StringBuilder.
+		/// </summary>
+		/// <param name="s">This is the overall string, passed by reference.</param>
+		/// <param name="sb">This is the stringbuilder.</param>
+		/// <param name="posInString">This is the position in the string.</param>
+		/// <param name="automatonAcceptFlag">This is the automationAcceptFlag, this must be true! Or else breakage will occure.</param>
+		private void RemoveBeginningParens(ref string s, ref StringBuilder sb, int posInString)
+		{
+			sb = sb.Remove(0, 1);
+			s = s.Remove(posInString, 1);
+			sb.Append(s.ElementAt(posInString));
+		}
 
 	}
 }

@@ -19,11 +19,6 @@ namespace Tokens
             Type = type;
 		}
 
-		public Token(Expr expression)
-		{
-			
-		}	
-
 	}
 
 }

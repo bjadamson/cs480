@@ -24,7 +24,8 @@ namespace MilestoneTwo
 
 			string fileContents = GetFileContents("test.txt");
 			while(fileContents.Any()) {
-				tokenList.Add(scanner.ParseToken(fileContents));
+				var token = scanner.ParseToken(ref fileContents);
+				tokenList.Add(token);
 
 				scanner.RemoveTokenFromBeginning(ref fileContents, tokenList.Last());
 			}
@@ -57,9 +58,7 @@ namespace MilestoneTwo
 				.SelectMany(c => c)
 				.ToList()
 				.ForEach(x => {
-					if (x != '(' && x != ')') {
-						result.Append(x);
-					}
+					result.Append(x);
 				});
 
 			return result.ToString();

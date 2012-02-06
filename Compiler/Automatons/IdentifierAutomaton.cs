@@ -18,7 +18,7 @@ namespace Compiler.Automatons
 
             foreach (char c in s)
             {
-                // Iterate through the string, if we find something other than a letter
+                // Iterate through the string, if we find something other than a letter, number,
                 // or an underscore we know that this is not valid naming so we return false
                 if (!char.IsLetterOrDigit(c) && c != '_')
                 {

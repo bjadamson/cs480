@@ -2,7 +2,7 @@
 (assign thisInt 1) 
 (assign thisBool true) 
 (assign thisReal 36.5) 
-(assign thisString "ben you are a slave driver") 
+(assign thisString "ben you are ( a slave driver") 
 (while (thisBool) 1) 
 (assign thisBool true) 
 (+) (-) (=) (/) (*) (<) (%) 
