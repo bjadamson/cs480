@@ -9,14 +9,14 @@ namespace Compiler.Automatons
 	{
 		public static bool Parse(string s)
 		{
-			return s.Count(c => c == '"') - CountEscapedParenthesis(s, '\\') == 2 &&
+			return s.Count(c => c == '"') - CountEscapedCharacter(s, '\\') == 2 &&
 				(s.LastIndexOf('"') == s.Length - 1);
 		}
 
 		public static bool ParsePartialString(string s)
 		{
 			return s.Contains('"') && 
-				s.Count(c => c == '"') - CountEscapedParenthesis(s, '\\') == 1;
+				s.Count(c => c == '"') - CountEscapedCharacter(s, '\\') == 1;
 		}
 
 
@@ -25,7 +25,7 @@ namespace Compiler.Automatons
 		/// </summary>
 		/// <param name="s"></param>
 		/// <returns></returns>
-		private static int CountEscapedParenthesis(string s, char escapedCharacter)
+		private static int CountEscapedCharacter(string s, char escapedCharacter)
 		{
 			int escapedParenthesisCount = 0;
 

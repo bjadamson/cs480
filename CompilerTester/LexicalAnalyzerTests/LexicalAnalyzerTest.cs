@@ -605,18 +605,45 @@ namespace CompilerTester.LexicalAnalyzerTests
 		}
 
 		[TestMethod]
-		public void AnalyzeEscapeQuoteCharacterString()
+		public void AnalyzeEscapeQuoteCharacterString_Test()
 		{
 			_testScanner = new Scanner();
 			List<Token> expectedTokens = new List<Token>() {
 				new Token("assign", TokenType.Keyword),
 				new Token("thisInt", TokenType.Identifier),
-				new Token("BOS test \\\" string \\\" EOS", TokenType.String)
+				new Token("\"BOS test \\\" string \\\" EOS\"", TokenType.String)
 			};
 
 			List<Token> actualTokens = new List<Token>();
 
-			string inputString = "(assign thisInt \" BOS test \\\" string \\\" EOS\" )";
+			string inputString = "(assign thisInt \"BOS test \\\" string \\\" EOS\")";
+			while (inputString.Any()) {
+				var token = _testScanner.ParseToken(ref inputString);
+				actualTokens.Add(token);
+				_testScanner.RemoveTokenFromBeginning(ref inputString, token);
+			}
+
+			if (expectedTokens.Count != actualTokens.Count) {
+				Assert.Fail();
+			}
+
+			for(var i = 0; i < expectedTokens.Count; ++ i) {
+				Assert.AreEqual(actualTokens.ElementAt(i), expectedTokens.ElementAt(i));
+			}
+		}
+        [TestMethod]
+		public void AnalyzeCrazyEscapeCharacterString_Test()
+		{
+			_testScanner = new Scanner();
+			List<Token> expectedTokens = new List<Token>() {
+				new Token("assign", TokenType.Keyword),
+				new Token("thisVar", TokenType.Identifier),
+				new Token("\"This is \\\"suppose\\\" to be \\\"something\\\" \\n ormal.\\; \"", TokenType.String)
+			};
+
+			List<Token> actualTokens = new List<Token>();
+
+            string inputString = "(assign thisVar \"This is \\\"suppose\\\" to be \\\"something\\\" \\n ormal.\\; \")";
 			while (inputString.Any()) {
 				var token = _testScanner.ParseToken(ref inputString);
 				actualTokens.Add(token);
