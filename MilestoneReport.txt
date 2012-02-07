@@ -1,0 +1,49 @@
+Name: Wesley Kos
+Date: 2/6/2012
+Milestone 2 Report 
+
+Handwritten Answers to Milestone Questions:
+
+Specification (what do you think the purpose of this milestone is) 
+	I think the purpose of this is to learn how a Lexical Analyzer works.
+The moving parts so to speak. A scanner to figure out what string is what
+token. Also to figure out the DFA's behind the scanner.
+
+Processing (how did you and/or your team go about solving the problem) 
+	First we wasted a bunch of time creating a data structure that we did not
+use. We created classes which represented each of the possible tokens. After that
+we desgined the finite state machines for each of the tokens we wanted to accept.
+Then we implemented those tokens. After that was completed we desgined our scanner.
+At first we were seperating all of the words in the file and storing them in a loop.
+Then we iterated over that loop comparing each word in the list against our token 
+finite state machines.
+	We decided that it would be better to iterate over the words chararacter by character.
+Then we check the characters at each step against our token automatons. We add the accept
+states to a list with a priority key. Then at the end of the word we order the list of 
+accepted tokens by the prority key and when it was accepted. The key that is at the top
+of the list is the Token we want so then we store the new token with the TokenType and
+key.
+ 
+Testing Requirement (how did you go about testing for correctness) 
+	We implemented a total of 40 unit tests. These tests check for correctness inside
+each of our Automaton Classes. They check for valid and invalid input and compare
+the actual results to the expected results. If they do not match it would return as 
+a failed test.
+	Inside of our lexical analyzer test class we feed one string into the scanner and
+compare the expected token against the actual token that was produced. We also scan
+statements that would be found inside the language such as (assign thisInt 1). We know
+that the scanner has produced correct output by comparing tokens.
+	
+Retrospective (what did you learn in this milestone)
+	I learned how to make a lexical analyzer. I learned about the DFA's behind it.
+It was very interesting having to strip a string apart and then figure out exactly
+what it is. 
+	The scanner I found particularly intersting. It was fun having to figure out the
+correct way to break the string apart and then scan through the words. We had a bit
+of trouble with a few edge cases. Such as trues returned as a bool with the key, true
+and value Boolean. We fixed that bug and then added a test case to proove to us that
+is was correct.
+	Overall I really enjoyed this assignment. I enjoyed figuring out how to implement
+this project in C#. I was able to work with LINQ more and figure out how to do more
+with it. 
+	

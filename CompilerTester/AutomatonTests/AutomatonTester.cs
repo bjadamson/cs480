@@ -25,7 +25,7 @@ namespace CompilerTester.AutomatonTests
         public void ParseInvalid_BooleanToken()
         {
             bool expected = false;
-            string s = "Not a Boolean";
+            string s = "trues";
 
             bool actual = BooleanAutomaton.Parse(s);
 

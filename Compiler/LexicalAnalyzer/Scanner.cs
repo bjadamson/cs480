@@ -105,12 +105,12 @@ namespace Compiler.LexicalAnalyzer
 
 			// order the possible types by the key
 			var orderedByKey = listOfPossibleTypes
-				.OrderBy(x => x.Key);
+				.OrderByDescending(x => x.Value);
 
 			// grab the longest-length value with the highest priority type
 			var result = orderedByKey
-				.Where(x => x.Key == orderedByKey.First().Key)
-				.OrderByDescending(x => x.Value)
+				.Where(x => x.Value == orderedByKey.First().Value)
+				.OrderBy(x => x.Key)
 				.First();
 
 			// construct the token with result

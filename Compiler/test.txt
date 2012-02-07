@@ -1,4 +1,4 @@
-(thisInt int) (thisBool bool) (thisReal real) (thisString string)
+(trues int) (thisBool bool) (thisReal real) (thisString string)
 (assign thisInt 1) 
 (assign thisBool true) 
 (assign thisReal 36.5) 
