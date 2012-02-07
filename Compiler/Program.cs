@@ -22,7 +22,7 @@ namespace MilestoneTwo
             List<Token> tokenList = new List<Token>();
             if (args.Length == 0)
             {
-                Console.WriteLine("Please specify input file for lexical analysis. Usage: make run <filename.txt>");
+                Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../test.txt\"");
                 return;
             }
 			string fileContents = GetFileContents(args.First());

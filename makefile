@@ -6,7 +6,7 @@ all:
 	/nfs/stak/students/a/adamsben/mono/bin/dmcs ./Compiler/Program.cs ./Compiler/Tokens/*.cs ./Compiler/extensions/*.cs ./Compiler/Automatons/*.cs ./Compiler/LexicalAnalyzer/*.cs
 
 run:
-	/nfs/stak/students/a/adamsben/mono/bin/mono ./Compiler/Program.exe
+	/nfs/stak/students/a/adamsben/mono/bin/mono ./Compiler/Program.exe $(ARG)
 
 clean:
 	rm -f *.exe
