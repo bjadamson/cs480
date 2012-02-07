@@ -20,8 +20,12 @@ namespace MilestoneTwo
         {
             Scanner scanner = new Scanner();
             List<Token> tokenList = new List<Token>();
-
-			string fileContents = GetFileContents("test.txt");
+            if (args.Length == 0)
+            {
+                Console.WriteLine("Please specify input file for lexical analysis. Usage: make run <filename.txt>");
+                return;
+            }
+			string fileContents = GetFileContents(args.First());
 			while(fileContents.Any()) {
 				var token = scanner.ParseToken(ref fileContents);
 				tokenList.Add(token);

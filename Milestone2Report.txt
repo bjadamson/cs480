@@ -1,21 +1,16 @@
-Name: Wesley Kos
-Date: 2/6/2012
-Milestone 2 Report 
 
-Handwritten Answers to Milestone Questions:
 1) Develop a formal definition of the scanner algorithm from the lexical 
 structure for our Itty Bitty Teaching Language (IBTL).
 Step 1) Accept input string of undefined Length
-Step 2) Read in the first word of the input string.
 Step 3) Move through the string one character at a time.
 Step 4) If the character is a ( or a ) remove it.
 Step 5) Check the input character against all Token Types.
 Step 6) Keep track of accepted Token Types in a List
-Step 7) Repeat process until the entire string is read in.
+Step 7) Repeat process until no Automatons accept it.
 Step 8) Order the list of accepted Token Types by key and value
 Step 9) Select the most appropriate key.
 Step 10) Store the token in a list of all tokens and go back to step 1)
-		with the next word in the input string.
+		and repeat process until the input string is all read in.
 	
 2) Develop a scanner algorithm from a formal definition.
 	static void Main(string[] args)
@@ -145,5 +140,5 @@ TokenTypes = Operator, Keyword, Real, Integer, Boolean, String, Identifier
 	
 5) Test the resulting program for correctness based on the formal definition.
 
-We decided upon developing our symbol table until we start work on our parser.
-x
+We decided upon waiting to develop our symbol table until we start work on our 
+parser.
