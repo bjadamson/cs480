@@ -51,6 +51,7 @@
     <Compile Include="Automatons\RealAutomaton.cs" />
     <Compile Include="Automatons\StringAutomaton.cs" />
     <Compile Include="extensions\StringExtensions.cs" />
+    <Compile Include="LexicalAnalyzer\ParenthesisRemover.cs" />
     <Compile Include="LexicalAnalyzer\Scanner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

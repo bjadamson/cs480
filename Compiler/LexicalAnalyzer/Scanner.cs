@@ -18,8 +18,8 @@ namespace Compiler.LexicalAnalyzer
 		{
 			s = s.Remove(0, token.Key.Length);
 
-			// trim leading white-space
-			s = s.TrimStart(' ');
+			// trim leading white-space, and the closing ')'
+			s = s.TrimStart(' ', ')');
 		}
 
 		/// <summary>
@@ -86,17 +86,9 @@ namespace Compiler.LexicalAnalyzer
 				}
 
 				if (automatonAcceptFlag) {
-
 					tokenLength++;
 					posInString++;
-                    if (s.Length != posInString)
-                    {
-                        sb.Append(s.ElementAt(posInString));
-                    }
-                    else
-                    {
-                        sb.Append(" ");
-                    }
+					sb.Append(s.Length != posInString ? s.ElementAt(posInString) : ' ');
 				}
 
 			} while (automatonAcceptFlag);
@@ -133,14 +125,7 @@ namespace Compiler.LexicalAnalyzer
 		{
 			sb = sb.Remove(sb.Length - 1, 1);
 			s = s.Remove(posInString, 1);
-            if (s.Length != posInString)
-            {
-                sb.Append(s.ElementAt(posInString));
-            }
-            else
-            {
-                sb.Append(" ");
-            }
+			sb.Append(s.Length != posInString ? s.ElementAt(posInString) : ' ');
 		}
 
 		/// <summary>
