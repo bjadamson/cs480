@@ -10,16 +10,16 @@ using Compiler.LexicalAnalyzer;
 
 namespace MilestoneTwo
 {
-	internal class Program
-	{
+    internal class Program
+    {
 		/// <summary>
 		/// Entry-point for the application
 		/// </summary>
 		/// <param name="args">command arguments</param>
-		static void Main(string[] args)
-		{
-			Scanner scanner = new Scanner();
-			List<Token> tokenList = new List<Token>();
+        static void Main(string[] args)
+        {
+            Scanner scanner = new Scanner();
+            List<Token> tokenList = new List<Token>();
 
 			string fileContents = GetFileContents("test.txt");
 			while(fileContents.Any()) {
@@ -33,7 +33,6 @@ namespace MilestoneTwo
 					tokenList.Select(item => string.Format("{0}\t:\t{1}\n", item.Key, item.Type))));
 			Console.ReadLine();
 		}
-
 
 		/// <summary>
 		/// Automatically figures out the correct path depending on which platform you are on and gets the contents of the file
@@ -61,6 +60,6 @@ namespace MilestoneTwo
 
 			return result.ToString();
 		}
-	}
+    }
 }
 
