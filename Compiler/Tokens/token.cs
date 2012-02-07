@@ -19,6 +19,19 @@ namespace Tokens
             Type = type;
 		}
 
+		public override bool Equals(object obj)
+		{
+			if (obj.GetType() == typeof(Token)) {
+				return ((Token)obj).Key == this.Key &&
+					((Token)obj).Type == this.Type;
+			}
+			return base.Equals(obj);
+		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
 	}
 
 }
