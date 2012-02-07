@@ -133,7 +133,14 @@ namespace Compiler.LexicalAnalyzer
 		{
 			sb = sb.Remove(sb.Length - 1, 1);
 			s = s.Remove(posInString, 1);
-			sb.Append(s.ElementAt(posInString));
+            if (s.Length != posInString)
+            {
+                sb.Append(s.ElementAt(posInString));
+            }
+            else
+            {
+                sb.Append(" ");
+            }
 		}
 
 		/// <summary>

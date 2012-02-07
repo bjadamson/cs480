@@ -25,7 +25,7 @@ namespace MilestoneTwo
 			while(fileContents.Any()) {
 				var token = scanner.ParseToken(ref fileContents);
 				tokenList.Add(token);
-				scanner.RemoveTokenFromBeginning(ref fileContents, tokenList.Last());
+				scanner.RemoveTokenFromBeginning(ref fileContents, token);
 			}
 
 			Console.WriteLine(
