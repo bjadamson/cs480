@@ -19,7 +19,7 @@ namespace Compiler.LexicalAnalyzer
 			s = s.Remove(0, token.Key.Length);
 
 			// trim leading white-space, and the closing ')'
-			s = s.TrimStart(' ', ')');
+			s = s.TrimStart(' ');
 		}
 
 		/// <summary>
@@ -36,17 +36,19 @@ namespace Compiler.LexicalAnalyzer
 			int tokenLength = 0;
 			bool automatonAcceptFlag = false;
 
-			do {
+			if (sb[0] == '(') {
+				return new Token("(", TokenType.LeftParen);
+			}
+			else if(sb[0] == ')') {
+				return new Token(")", TokenType.RightParen);
+			}
 
-				if (sb[0] == '(') {
-					automatonAcceptFlag = true;
-					RemoveBeginningParens(ref s, ref sb, posInString);
-					continue;
-				}
-				else if (sb[sb.Length - 1] == ')') {
-					automatonAcceptFlag = true;
-					RemoveEndingParens(ref s, ref sb, posInString);
-					continue;
+			do {
+				if (sb[sb.Length - 1] == ')' && !StringAutomaton.ParsePartialString(sb.ToString())) {
+
+					// Remove the last parenthesis
+					sb = sb.Remove(sb.Length - 1, 1);
+					break;
 				}
 
 				automatonAcceptFlag = false;
@@ -111,36 +113,5 @@ namespace Compiler.LexicalAnalyzer
 				result.Key);
 	
 		}
-
-		/// <summary>
-		/// This function removes the ending parens in both the string itself, as well as the StringBuilder. 
-		/// For the StringBuilder, we simply need to remove it from the end. As for the string itself, we
-		/// have to keep track of where we are in the overall string (posInString). 
-		/// </summary>
-		/// <param name="s">This is the overall string, passed by reference.</param>
-		/// <param name="sb">This is the stringbuilder.</param>
-		/// <param name="posInString">This is the position in the string.</param>
-		/// <param name="automatonAcceptFlag">This is the automationAcceptFlag, this must be true! Or else breakage will occure.</param>
-		private void RemoveEndingParens(ref string s, ref StringBuilder sb, int posInString)
-		{
-			sb = sb.Remove(sb.Length - 1, 1);
-			s = s.Remove(posInString, 1);
-			sb.Append(s.Length != posInString ? s.ElementAt(posInString) : ' ');
-		}
-
-		/// <summary>
-		/// Removes the beginning parens in both the string itself, as well as the StringBuilder.
-		/// </summary>
-		/// <param name="s">This is the overall string, passed by reference.</param>
-		/// <param name="sb">This is the stringbuilder.</param>
-		/// <param name="posInString">This is the position in the string.</param>
-		/// <param name="automatonAcceptFlag">This is the automationAcceptFlag, this must be true! Or else breakage will occure.</param>
-		private void RemoveBeginningParens(ref string s, ref StringBuilder sb, int posInString)
-		{
-			sb = sb.Remove(0, 1);
-			s = s.Remove(posInString, 1);
-			sb.Append(s.ElementAt(posInString));
-		}
-
 	}
 }

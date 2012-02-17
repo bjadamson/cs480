@@ -5,7 +5,7 @@ namespace Tokens
 	/// <summary>
 	/// The order of this enumeration MATTERS. The sort algorithm depends on the order of these operands.
 	/// </summary>
-	public enum TokenType { Operator, Keyword, Real, Integer, Boolean, String, Identifier };
+	public enum TokenType { Operator, Keyword, Real, Integer, Boolean, String, Identifier, LeftParen, RightParen };
 
 	public class Token
 	{

@@ -7,63 +7,31 @@ using System.IO;
 using Compiler.extensions;
 using Compiler.Automatons;
 using Compiler.LexicalAnalyzer;
+using Compiler.Parser;
 
 namespace MilestoneTwo
 {
-    internal class Program
-    {
+	internal class Program
+	{
 		/// <summary>
 		/// Entry-point for the application
 		/// </summary>
 		/// <param name="args">command arguments</param>
-        static void Main(string[] args)
-        {
-            Scanner scanner = new Scanner();
-            List<Token> tokenList = new List<Token>();
-            if (args.Length == 0)
-            {
-                Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../test.txt\"");
-                return;
-            }
-			string fileContents = GetFileContents(args.First());
-			while(fileContents.Any()) {
-				var token = scanner.ParseToken(ref fileContents);
-				tokenList.Add(token);
-				scanner.RemoveTokenFromBeginning(ref fileContents, token);
-			}
-
-			Console.WriteLine(
-				string.Join("", 
-					tokenList.Select(item => string.Format("{0}\t:\t{1}\n", item.Key, item.Type))));
-			Console.ReadLine();
-		}
-
-		/// <summary>
-		/// Automatically figures out the correct path depending on which platform you are on and gets the contents of the file
-		/// </summary>
-		/// <param name="filename"></param>
-		/// <returns></returns>
-		static string GetFileContents(string filename)
+		static void Main(string[] args)
 		{
-			string fullFilePath = AppDomain.CurrentDomain.BaseDirectory;
+			Scanner scanner = new Scanner();
+			Parser parser = new Parser();
 
-			if (Environment.OSVersion.ToString().Contains("Windows")) {
-				fullFilePath += @"..\..\" + filename;
-			} else {
-				// assume unix
-				fullFilePath += filename;
+			if (args.Length == 0)
+			{
+				Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../test.txt\"");
+				return;
 			}
 
-			StringBuilder result = new StringBuilder();
-			File.ReadAllLines(fullFilePath)
-				.SelectMany(c => c)
-				.ToList()
-				.ForEach(x => {
-					result.Append(x);
-				});
+			parser.ParseFile(args.First());
 
-			return result.ToString();
+			parser.PrintTokens();
 		}
-    }
+	}
 }
 
