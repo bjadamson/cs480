@@ -28,9 +28,14 @@ namespace MilestoneTwo
 				return;
 			}
 
-			parser.ParseFile(args.First());
-
-			parser.PrintTokens();
+			try {
+				parser.ParseFile(args.First());
+				parser.PrintTokens();
+			}
+			catch (InvalidDataException ide) {
+				Console.WriteLine(ide.Message);
+				Console.ReadLine();
+			}
 		}
 	}
 }

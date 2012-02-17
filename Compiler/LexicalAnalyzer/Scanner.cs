@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Tokens;
 using Compiler.Automatons;
+using System.IO;
 
 namespace Compiler.LexicalAnalyzer
 {
@@ -27,7 +28,7 @@ namespace Compiler.LexicalAnalyzer
 		/// </summary>
 		/// <param name="s"></param>
 		/// <returns></returns>
-		public Token ParseToken(ref string s)
+		public Token GetNextToken(ref string s)
 		{
 			var listOfPossibleTypes = new List<KeyValuePair<TokenType, int>>(10);
 
@@ -35,6 +36,7 @@ namespace Compiler.LexicalAnalyzer
 			int posInString = 0;
 			int tokenLength = 0;
 			bool automatonAcceptFlag = false;
+			bool shouldNotBeIdentifier = char.IsDigit(sb[0]) || sb[0] == '_';
 
 			if (sb[0] == '(') {
 				return new Token("(", TokenType.LeftParen);
@@ -95,7 +97,22 @@ namespace Compiler.LexicalAnalyzer
 
 			} while (automatonAcceptFlag);
 
+			var check = listOfPossibleTypes.Select(x => x.Key);
 
+			if (check.Contains(TokenType.Integer) && !check.Contains(TokenType.Real)) {
+				foreach (var c in sb.ToString()) {
+					if (!char.IsDigit(c)) {
+						throw new InvalidDataException(string.Format("Lexical analyzer could not tokenize token {0}", sb.ToString()));
+					}
+				}
+			}
+			if(check.Contains(TokenType.Real)) {
+				foreach (var c in sb.ToString()) {
+					if (!char.IsDigit(c) && c != '.') {
+						throw new InvalidDataException(string.Format("Lexical analyzer could not tokenize token {0}", sb.ToString()));
+					}
+				}
+			}
 
 			// order the possible types by the key
 			var orderedByKey = listOfPossibleTypes

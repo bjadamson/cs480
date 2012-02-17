@@ -10,17 +10,14 @@ namespace Compiler.Parser
 {
 	public class Parser
 	{
+		private Token lastTokenScanned = null;
 		private Scanner scanner = new Scanner();
-		List<Token> tokenList = new List<Token>();
+		private List<Token> tokenList = new List<Token>();
 
 		public void ParseFile(string filename) {
 
 			string fileContents = GetFileContents(filename);
-			while (fileContents.Any()) {
-				var token = scanner.ParseToken(ref fileContents);
-				tokenList.Add(token);
-				scanner.RemoveTokenFromBeginning(ref fileContents, token);
-			}
+			ParseToken(ref fileContents);
 		}
 
 		public void PrintTokens() {
@@ -28,6 +25,56 @@ namespace Compiler.Parser
 				string.Join("",
 					tokenList.Select(item => string.Format("{0}\t:\t{1}\n", item.Key, item.Type))));
 			Console.ReadLine();
+		}
+
+		private void ParseTokenHelper(ref string s, Token token) {
+
+			if (token.Type == TokenType.LeftParen) {
+				tokenList.Add(token);
+				scanner.RemoveTokenFromBeginning(ref s, token);
+
+				lastTokenScanned = scanner.GetNextToken(ref s);
+				ParseTokenHelper(ref s, lastTokenScanned);
+			}
+
+			while (token.Type != TokenType.LeftParen && token.Type != TokenType.RightParen) {
+				tokenList.Add(token);
+				scanner.RemoveTokenFromBeginning(ref s, token);
+				token = scanner.GetNextToken(ref s);
+			}
+			if (token.Type == TokenType.RightParen) {
+				tokenList.Add(token);
+				scanner.RemoveTokenFromBeginning(ref s, token);
+			}
+			else if (token.Type == TokenType.LeftParen) {
+				if (s.Any()) {
+					lastTokenScanned = scanner.GetNextToken(ref s);
+					ParseTokenHelper(ref s, lastTokenScanned);
+				}
+			}
+		}
+
+		private void ParseToken(ref string s) {
+			var firstToken = scanner.GetNextToken(ref s);
+			lastTokenScanned = firstToken;
+
+			if (firstToken.Type != TokenType.LeftParen) {
+				throw new InvalidDataException(string.Format("Unexpected initial token {{{0} : {1}}}, expected {{'(' }}", firstToken.Key, firstToken.Type));
+			}
+
+			ParseTokenHelper(ref s, firstToken);
+
+			if (lastTokenScanned.Type != TokenType.RightParen) {
+				throw new InvalidDataException(string.Format("Unexpected final token {{{0} : {1}}}, expecting {{')'}}", lastTokenScanned.Key, lastTokenScanned.Type));
+			}
+
+			if (s.Length == 2 && s.ElementAt(0) == '(' && s.ElementAt(1) == ')') {
+				throw new InvalidDataException(string.Format("Parse error! Production rules do not allow S->epsilon."));
+			}
+
+			if (s.Any()) {
+				throw new InvalidDataException(string.Format("Unexpected token {0}{1}, expected end of file.", lastTokenScanned.Key, lastTokenScanned.Type));
+			}
 		}
 
 
