@@ -19,22 +19,24 @@ namespace MilestoneTwo
 		/// <param name="args">command arguments</param>
 		static void Main(string[] args)
 		{
-			Parser parser = new Parser();
+			foreach (var file in args) {
+				Parser parser = new Parser();
 
-			if (args.Length == 0)
-			{
-				Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../test.txt\"");
-				return;
-			}
+				if (args.Length == 0) {
+					Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../test.txt\"");
+					return;
+				}
 
-			try {
-				parser.ParseFile(args.First());
-				parser.PrintTokens();
+				try {
+					parser.ParseFile(file);
+					parser.PrintTokens();
+				}
+				catch (InvalidDataException ide) {
+					Console.WriteLine(ide.Message);
+					Console.ReadLine();
+				}
 			}
-			catch (InvalidDataException ide) {
-				Console.WriteLine(ide.Message);
-				Console.ReadLine();
-			}
+			
 		}
 	}
 }
