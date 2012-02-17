@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Tokens;
 using Compiler.Automatons;
-using System.IO;
 
 namespace Compiler.LexicalAnalyzer
 {
@@ -20,7 +19,7 @@ namespace Compiler.LexicalAnalyzer
 			s = s.Remove(0, token.Key.Length);
 
 			// trim leading white-space, and the closing ')'
-			s = s.TrimStart(' ');
+			s = s.TrimStart(' ', ')');
 		}
 
 		/// <summary>
@@ -28,7 +27,7 @@ namespace Compiler.LexicalAnalyzer
 		/// </summary>
 		/// <param name="s"></param>
 		/// <returns></returns>
-		public Token GetNextToken(ref string s)
+		public Token ParseToken(ref string s)
 		{
 			var listOfPossibleTypes = new List<KeyValuePair<TokenType, int>>(10);
 
@@ -37,19 +36,17 @@ namespace Compiler.LexicalAnalyzer
 			int tokenLength = 0;
 			bool automatonAcceptFlag = false;
 
-			if (sb[0] == '(') {
-				return new Token("(", TokenType.LeftParen);
-			}
-			else if(sb[0] == ')') {
-				return new Token(")", TokenType.RightParen);
-			}
-
 			do {
-				if (sb[sb.Length - 1] == ')' && !StringAutomaton.ParsePartialString(sb.ToString())) {
 
-					// Remove the last parenthesis
-					sb = sb.Remove(sb.Length - 1, 1);
-					break;
+				if (sb[0] == '(') {
+					automatonAcceptFlag = true;
+					RemoveBeginningParens(ref s, ref sb, posInString);
+					continue;
+				}
+				else if (sb[sb.Length - 1] == ')') {
+					automatonAcceptFlag = true;
+					RemoveEndingParens(ref s, ref sb, posInString);
+					continue;
 				}
 
 				automatonAcceptFlag = false;
@@ -96,22 +93,7 @@ namespace Compiler.LexicalAnalyzer
 
 			} while (automatonAcceptFlag);
 
-			var check = listOfPossibleTypes.Select(x => x.Key);
 
-			if (check.Contains(TokenType.Integer) && !check.Contains(TokenType.Real)) {
-				foreach (var c in sb.ToString()) {
-					if (!char.IsDigit(c)) {
-						throw new InvalidDataException(string.Format("Lexical analyzer could not tokenize token {0}", sb.ToString()));
-					}
-				}
-			}
-			if(check.Contains(TokenType.Real)) {
-				foreach (var c in sb.ToString()) {
-					if (!char.IsDigit(c) && c != '.') {
-						throw new InvalidDataException(string.Format("Lexical analyzer could not tokenize token {0}", sb.ToString()));
-					}
-				}
-			}
 
 			// order the possible types by the key
 			var orderedByKey = listOfPossibleTypes
@@ -129,5 +111,36 @@ namespace Compiler.LexicalAnalyzer
 				result.Key);
 	
 		}
+
+		/// <summary>
+		/// This function removes the ending parens in both the string itself, as well as the StringBuilder. 
+		/// For the StringBuilder, we simply need to remove it from the end. As for the string itself, we
+		/// have to keep track of where we are in the overall string (posInString). 
+		/// </summary>
+		/// <param name="s">This is the overall string, passed by reference.</param>
+		/// <param name="sb">This is the stringbuilder.</param>
+		/// <param name="posInString">This is the position in the string.</param>
+		/// <param name="automatonAcceptFlag">This is the automationAcceptFlag, this must be true! Or else breakage will occure.</param>
+		private void RemoveEndingParens(ref string s, ref StringBuilder sb, int posInString)
+		{
+			sb = sb.Remove(sb.Length - 1, 1);
+			s = s.Remove(posInString, 1);
+			sb.Append(s.Length != posInString ? s.ElementAt(posInString) : ' ');
+		}
+
+		/// <summary>
+		/// Removes the beginning parens in both the string itself, as well as the StringBuilder.
+		/// </summary>
+		/// <param name="s">This is the overall string, passed by reference.</param>
+		/// <param name="sb">This is the stringbuilder.</param>
+		/// <param name="posInString">This is the position in the string.</param>
+		/// <param name="automatonAcceptFlag">This is the automationAcceptFlag, this must be true! Or else breakage will occure.</param>
+		private void RemoveBeginningParens(ref string s, ref StringBuilder sb, int posInString)
+		{
+			sb = sb.Remove(0, 1);
+			s = s.Remove(posInString, 1);
+			sb.Append(s.ElementAt(posInString));
+		}
+
 	}
 }

@@ -19,7 +19,6 @@ namespace MilestoneTwo
 		/// <param name="args">command arguments</param>
 		static void Main(string[] args)
 		{
-			Scanner scanner = new Scanner();
 			Parser parser = new Parser();
 
 			if (args.Length == 0)

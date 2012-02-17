@@ -1,0 +1,9 @@
+Authors:
+	Benjamin Adamson
+	Joseph Bott
+	Wesley Kos
+
+Written in C#, using the Mono Compiler.
+
+To Compile/Run:
+	In the root directory, type 'make stutest.out' or type 'make proftest.out'
