@@ -19,7 +19,7 @@ namespace MilestoneTwo
 		/// <param name="args">command arguments</param>
 		static void Main(string[] args)
 		{
-			foreach (var file in args) {
+			foreach (var file in string.Join(" ", args).Split(' ')) {
 				Parser parser = new Parser();
 
 				if (args.Length == 0) {
