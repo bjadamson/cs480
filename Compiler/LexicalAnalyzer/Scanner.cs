@@ -100,14 +100,14 @@ namespace Compiler.LexicalAnalyzer
 
 			if (check.Contains(TokenType.Integer) && !check.Contains(TokenType.Real)) {
 				foreach (var c in sb.ToString()) {
-					if (!char.IsDigit(c)) {
+					if (!char.IsDigit(c) && c!= ' ') {
 						throw new InvalidDataException(string.Format("Lexical analyzer could not tokenize token {0}", sb.ToString()));
 					}
 				}
 			}
 			if(check.Contains(TokenType.Real)) {
 				foreach (var c in sb.ToString()) {
-					if (!char.IsDigit(c) && c != '.') {
+					if (!char.IsDigit(c) && c != '.' && c != ' ') {
 						throw new InvalidDataException(string.Format("Lexical analyzer could not tokenize token {0}", sb.ToString()));
 					}
 				}
