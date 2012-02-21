@@ -72,7 +72,7 @@ namespace Compiler.Parser
 				throw new InvalidDataException(string.Format("Unexpected final token {{{0} : {1}}}, expecting {{')'}}", lastTokenScanned.Key, lastTokenScanned.Type));
 			}
 
-			if (s.Length == 2 && s.ElementAt(0) == '(' && s.ElementAt(1) == ')') {
+			if (tokenList.Count == 2 && tokenList.ElementAt(0).Type == TokenType.LeftParen && tokenList.ElementAt(1).Type == TokenType.RightParen) {
 				throw new InvalidDataException(string.Format("Parse error! Production rules do not allow S->epsilon."));
 			}
 

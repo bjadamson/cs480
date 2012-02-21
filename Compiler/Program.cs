@@ -17,10 +17,11 @@ namespace MilestoneTwo
 		/// Entry-point for the application
 		/// </summary>
 		/// <param name="args">command arguments</param>
-		static void Main(string[] args)
-		{
+		static void Main(string[] args) {
 			foreach (var file in string.Join(" ", args).Split(' ')) {
 				Parser parser = new Parser();
+
+				Console.WriteLine("Processing File {0}", file);
 
 				if (args.Length == 0) {
 					Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../file1.txt ../file2.txt\"");
@@ -32,11 +33,13 @@ namespace MilestoneTwo
 					parser.PrintTokens();
 				}
 				catch (InvalidDataException ide) {
-					Console.WriteLine(ide.Message);
-					Console.ReadLine();
+					Console.WriteLine(ide.Message + "\nParse Failed!!\n");
 				}
 			}
-			
+			// only on windows do we need to read a line
+			if (Environment.OSVersion.ToString().Contains("Windows")) {
+				Console.ReadLine();
+			}
 		}
 	}
 }
