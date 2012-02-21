@@ -22,7 +22,7 @@ namespace MilestoneTwo
 				Parser parser = new Parser();
 
 				Console.WriteLine("Processing File {0}", file);
-				bool derp = file.Contains("pass", StringComparison.OrdinalIgnoreCase);
+				bool expectPass = file.Contains("pass", StringComparison.OrdinalIgnoreCase);
 
 				if (args.Length == 0) {
 					Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../file1.txt ../file2.txt\"");
@@ -34,7 +34,16 @@ namespace MilestoneTwo
 					parser.PrintTokens();
 				}
 				catch (InvalidDataException ide) {
+				
+					if(expectPass){
+						Console.WriteLine("Expected File to Pass but it failed! {0}", file); 	
+					}
+					else{
+						Console.WriteLine("Expected File to Fail and it did! {0}", file);
+					}
+
 					Console.WriteLine(ide.Message + "\nParse Failed!!\n");
+
 				}
 			}
 			// only on windows do we need to read a line

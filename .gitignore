@@ -15,3 +15,5 @@
 /compilertester/bin
 /compilertester/obj
 /traceandtestimpact.testsettings
+/Compiler/Program.exe
+./stutest.out
