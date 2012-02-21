@@ -22,6 +22,7 @@ namespace MilestoneTwo
 				Parser parser = new Parser();
 
 				Console.WriteLine("Processing File {0}", file);
+				bool derp = file.Contains("pass", StringComparison.OrdinalIgnoreCase);
 
 				if (args.Length == 0) {
 					Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../file1.txt ../file2.txt\"");
