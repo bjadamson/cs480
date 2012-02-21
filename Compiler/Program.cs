@@ -45,6 +45,10 @@ namespace MilestoneTwo
 					Console.WriteLine(ide.Message + "\nParse Failed!!\n");
 
 				}
+				catch (FileNotFoundException fnf){
+					Console.WriteLine(fnf.Message + "\n" + "\n");
+					
+				}	
 			}
 			// only on windows do we need to read a line
 			if (Environment.OSVersion.ToString().Contains("Windows")) {
