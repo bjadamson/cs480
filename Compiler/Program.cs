@@ -33,16 +33,15 @@ namespace MilestoneTwo
 					parser.ParseFile(file);
 					parser.PrintTokens();
 				}
-				catch (InvalidDataException ide) {
+				catch (InvalidDataException) {
 				
 					if(expectPass){
-						Console.WriteLine("Expected File to Pass but it failed! {0}", file); 	
+						Console.WriteLine("Expected: {0} to PASS. Actual: FAIL", file); 	
 					}
 					else{
-						Console.WriteLine("Expected File to Fail and it did! {0}", file);
+						Console.WriteLine("Expected: {0} to FAIL. Actual: FAIL", file);
 					}
-
-					Console.WriteLine(ide.Message + "\nParse Failed!!\n");
+					Console.WriteLine("");
 
 				}
 				catch (FileNotFoundException fnf){
