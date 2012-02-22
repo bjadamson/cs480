@@ -12,6 +12,15 @@ namespace CompilerTester.LexicalAnalyzerTests
 	public class LexicalAnalyzerTest
 	{
 		private Scanner _testScanner;
+
+		private void ValidateExpectedVsActualTokens(List<Token> expectedTokens, List<Token> actualTokens) {
+			Assert.AreEqual(expectedTokens.Count, actualTokens.Count);
+			for (var i = 0; i < expectedTokens.Count; ++i) {
+				Assert.AreEqual(actualTokens.ElementAt(i), expectedTokens.ElementAt(i));
+			}
+		}
+
+
 		[TestMethod]
 		public void AnalyzeTrueBoolean_Test()
 		{
@@ -21,7 +30,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			string s = "true";
 			
-			Token actual = _testScanner.ParseToken(ref s);
+			Token actual = _testScanner.GetNextToken(ref s);
 
 			Assert.AreEqual(expected.Key, actual.Key);
 			Assert.AreEqual(expected.Type, actual.Type);
@@ -36,7 +45,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			string s = ("thisIdentifier");
 
-			Token actual = _testScanner.ParseToken(ref s);
+			Token actual = _testScanner.GetNextToken(ref s);
 
 			Assert.AreEqual(expected.Key, actual.Key);
 			Assert.AreEqual(expected.Type, actual.Type);
@@ -51,7 +60,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			string s = "1";
 
-			Token actual = _testScanner.ParseToken(ref s);
+			Token actual = _testScanner.GetNextToken(ref s);
 
 			Assert.AreEqual(expected.Key, actual.Key);
 			Assert.AreEqual(expected.Type, actual.Type);
@@ -66,7 +75,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			string s = "int";
 
-			Token actual = _testScanner.ParseToken(ref s);
+			Token actual = _testScanner.GetNextToken(ref s);
 
 			Assert.AreEqual(expected.Key, actual.Key);
 			Assert.AreEqual(expected.Type, actual.Type);
@@ -81,7 +90,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			string s = "+";
 
-			Token actual = _testScanner.ParseToken(ref s);
+			Token actual = _testScanner.GetNextToken(ref s);
 
 			Assert.AreEqual(expected.Key, actual.Key);
 			Assert.AreEqual(expected.Type, actual.Type);
@@ -96,7 +105,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			string s = "10.0";
 
-			Token actual = _testScanner.ParseToken(ref s);
+			Token actual = _testScanner.GetNextToken(ref s);
 
 			Assert.AreEqual(expected.Key, actual.Key);
 			Assert.AreEqual(expected.Type, actual.Type);
@@ -111,7 +120,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			string s = "\"This is a string\"";
 
-			Token actual = _testScanner.ParseToken(ref s);
+			Token actual = _testScanner.GetNextToken(ref s);
 
 			Assert.AreEqual(expected.Key, actual.Key);
 			Assert.AreEqual(expected.Type, actual.Type);
@@ -123,9 +132,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("assign", TokenType.Keyword));
 			expectedList.Add(new Token("thisInt", TokenType.Identifier));
 			expectedList.Add(new Token("1", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(assign thisInt 1)";
 
@@ -133,19 +144,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -154,9 +158,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("assign", TokenType.Keyword));
 			expectedList.Add(new Token("thisString", TokenType.Identifier));
 			expectedList.Add(new Token("\"This is a string\"", TokenType.String));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(assign thisString \"This is a string\")";
 
@@ -164,19 +170,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -185,9 +184,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("assign", TokenType.Keyword));
 			expectedList.Add(new Token("thisBool", TokenType.Identifier));
 			expectedList.Add(new Token("true", TokenType.Boolean));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(assign thisBool true)";
 
@@ -195,19 +196,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -216,9 +210,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("+", TokenType.Operator));
 			expectedList.Add(new Token("1", TokenType.Integer));
 			expectedList.Add(new Token("2", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(+ 1 2)";
 
@@ -226,19 +222,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -247,9 +236,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("-", TokenType.Operator));
 			expectedList.Add(new Token("1", TokenType.Integer));
 			expectedList.Add(new Token("2", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(- 1 2)";
 
@@ -257,19 +248,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -278,9 +262,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("*", TokenType.Operator));
 			expectedList.Add(new Token("1", TokenType.Integer));
 			expectedList.Add(new Token("2", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(* 1 2)";
 
@@ -288,19 +274,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 		[TestMethod]
 		public void AnalyzeDivideString_Test()
@@ -308,9 +287,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("/", TokenType.Operator));
 			expectedList.Add(new Token("1", TokenType.Integer));
 			expectedList.Add(new Token("2", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(/ 1 2)";
 
@@ -318,19 +299,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -339,9 +313,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("^", TokenType.Operator));
 			expectedList.Add(new Token("1", TokenType.Integer));
 			expectedList.Add(new Token("2", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(^ 1 2)";
 
@@ -349,19 +325,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -370,9 +339,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("%", TokenType.Operator));
 			expectedList.Add(new Token("1", TokenType.Integer));
 			expectedList.Add(new Token("2", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(% 1 2)";
 
@@ -380,19 +351,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -401,9 +365,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("=", TokenType.Operator));
 			expectedList.Add(new Token("1", TokenType.Integer));
 			expectedList.Add(new Token("2", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(= 1 2)";
 
@@ -411,19 +377,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -432,9 +391,11 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("<", TokenType.Operator));
 			expectedList.Add(new Token("1", TokenType.Integer));
 			expectedList.Add(new Token("2", TokenType.Integer));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(< 1 2)";
 
@@ -442,19 +403,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -463,8 +417,10 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("thisVar", TokenType.Identifier));
 			expectedList.Add(new Token("int", TokenType.Keyword));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(thisVar int)";
 
@@ -472,16 +428,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -490,8 +442,10 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("thisVar", TokenType.Identifier));
 			expectedList.Add(new Token("bool", TokenType.Keyword));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(thisVar bool)";
 
@@ -499,16 +453,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -517,8 +467,10 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("thisVar", TokenType.Identifier));
 			expectedList.Add(new Token("real", TokenType.Keyword));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(thisVar real)";
 
@@ -526,16 +478,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -544,25 +492,22 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("thisVar", TokenType.Identifier));
 			expectedList.Add(new Token("string", TokenType.Keyword));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(thisVar string)";
 
 			List<Token> actualList = new List<Token>();
 
-			while (s.Any())
-			{
-				var token = _testScanner.ParseToken(ref s);
+			while (s.Any()) {
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -571,11 +516,15 @@ namespace CompilerTester.LexicalAnalyzerTests
 			_testScanner = new Scanner();
 
 			List<Token> expectedList = new List<Token>();
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("while", TokenType.Keyword));
 			expectedList.Add(new Token("thisBool", TokenType.Identifier));
+			expectedList.Add(new Token("(", TokenType.LeftParen));
 			expectedList.Add(new Token("if", TokenType.Keyword));
 			expectedList.Add(new Token("thisBool", TokenType.Identifier));
 			expectedList.Add(new Token("false", TokenType.Boolean));
+			expectedList.Add(new Token(")", TokenType.RightParen));
+			expectedList.Add(new Token(")", TokenType.RightParen));
 
 			string s = "(while thisBool (if thisBool false))";
 
@@ -583,25 +532,12 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			while (s.Any())
 			{
-				var token = _testScanner.ParseToken(ref s);
+				var token = _testScanner.GetNextToken(ref s);
 				actualList.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref s, token);
 			}
 
-			Assert.AreEqual(expectedList[0].Key, actualList[0].Key);
-			Assert.AreEqual(expectedList[0].Type, actualList[0].Type);
-
-			Assert.AreEqual(expectedList[1].Key, actualList[1].Key);
-			Assert.AreEqual(expectedList[1].Type, actualList[1].Type);
-
-			Assert.AreEqual(expectedList[2].Key, actualList[2].Key);
-			Assert.AreEqual(expectedList[2].Type, actualList[2].Type);
-
-			Assert.AreEqual(expectedList[3].Key, actualList[3].Key);
-			Assert.AreEqual(expectedList[3].Type, actualList[3].Type);
-
-			Assert.AreEqual(expectedList[4].Key, actualList[4].Key);
-			Assert.AreEqual(expectedList[4].Type, actualList[4].Type);
+			ValidateExpectedVsActualTokens(expectedList, actualList);
 		}
 
 		[TestMethod]
@@ -609,54 +545,46 @@ namespace CompilerTester.LexicalAnalyzerTests
 		{
 			_testScanner = new Scanner();
 			List<Token> expectedTokens = new List<Token>() {
+				new Token("(", TokenType.LeftParen),
 				new Token("assign", TokenType.Keyword),
 				new Token("thisInt", TokenType.Identifier),
-				new Token("\"BOS test \\\" string \\\" EOS\"", TokenType.String)
+				new Token("\"BOS test \\\" string \\\" EOS\"", TokenType.String),
+				new Token(")", TokenType.RightParen)
 			};
 
 			List<Token> actualTokens = new List<Token>();
 
 			string inputString = "(assign thisInt \"BOS test \\\" string \\\" EOS\")";
 			while (inputString.Any()) {
-				var token = _testScanner.ParseToken(ref inputString);
+				var token = _testScanner.GetNextToken(ref inputString);
 				actualTokens.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref inputString, token);
 			}
 
-			if (expectedTokens.Count != actualTokens.Count) {
-				Assert.Fail();
-			}
-
-			for(var i = 0; i < expectedTokens.Count; ++ i) {
-				Assert.AreEqual(actualTokens.ElementAt(i), expectedTokens.ElementAt(i));
-			}
+			ValidateExpectedVsActualTokens(expectedTokens, actualTokens);
 		}
         [TestMethod]
 		public void AnalyzeCrazyEscapeCharacterString_Test()
 		{
 			_testScanner = new Scanner();
 			List<Token> expectedTokens = new List<Token>() {
+				new Token("(", TokenType.LeftParen),
 				new Token("assign", TokenType.Keyword),
 				new Token("thisVar", TokenType.Identifier),
-				new Token("\"This is \\\"suppose\\\" to be \\\"something\\\" \\n ormal.\\; \"", TokenType.String)
+				new Token("\"This is \\\"suppose\\\" to be \\\"something\\\" \\n ormal.\\; \"", TokenType.String),
+				new Token(")", TokenType.RightParen)
 			};
 
 			List<Token> actualTokens = new List<Token>();
 
             string inputString = "(assign thisVar \"This is \\\"suppose\\\" to be \\\"something\\\" \\n ormal.\\; \")";
 			while (inputString.Any()) {
-				var token = _testScanner.ParseToken(ref inputString);
+				var token = _testScanner.GetNextToken(ref inputString);
 				actualTokens.Add(token);
 				_testScanner.RemoveTokenFromBeginning(ref inputString, token);
 			}
 
-			if (expectedTokens.Count != actualTokens.Count) {
-				Assert.Fail();
-			}
-
-			for(var i = 0; i < expectedTokens.Count; ++ i) {
-				Assert.AreEqual(actualTokens.ElementAt(i), expectedTokens.ElementAt(i));
-			}
+			ValidateExpectedVsActualTokens(expectedTokens, actualTokens);
 		}
 	}
 }
