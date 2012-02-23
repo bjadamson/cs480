@@ -2,10 +2,10 @@
 
 PKG_CONFIG_PATH:=/nfs/stak/students/a/adamsben/mono/lib/pkgconfig/
 PATH=../tests/milestone2/
-ARG1=$(PATH)test1[FAIL].txt
-ARG2=$(PATH)websiteTest1[PASS].txt
-ARG3=$(PATH)websiteTest2[PASS].txt
-ARG4=$(PATH)websiteTest3[PASS].txt
+ARG1=$(PATH)test0[FAIL].txt
+ARG2=$(PATH)test1.txt
+ARG3=$(PATH)test2.txt
+ARG4=$(PATH)test3.txt
 
 stutest: 
 	/nfs/stak/students/a/adamsben/mono/bin/dmcs ./Compiler/Program.cs ./Compiler/Tokens/*.cs ./Compiler/extensions/*.cs ./Compiler/Automatons/*.cs ./Compiler/LexicalAnalyzer/*.cs ./Compiler/Parser/*.cs
