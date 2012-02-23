@@ -35,7 +35,7 @@ namespace MilestoneTwo
 				}
 				catch (InvalidDataException) {
 				
-					if(expectFileToFail){
+					if(!expectFileToFail){
 						Console.WriteLine("Expected: {0} to PASS. Actual: FAIL", file); 	
 					}
 					else{

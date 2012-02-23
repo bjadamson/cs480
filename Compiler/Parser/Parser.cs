@@ -24,11 +24,6 @@ namespace Compiler.Parser
 			Console.WriteLine(
 				string.Join("",
 					tokenList.Select(item => string.Format("{0}\t:\t{1}\n", item.Key, item.Type))));
-
-			// only on windows do we need to read a line
-			if (Environment.OSVersion.ToString().Contains("Windows")) {
-				Console.ReadLine();
-			}
 		}
 
 		private void ParseTokenHelper(ref string s, Token token) {
@@ -45,6 +40,7 @@ namespace Compiler.Parser
 				tokenList.Add(token);
 				scanner.RemoveTokenFromBeginning(ref s, token);
 				token = scanner.GetNextToken(ref s);
+				lastTokenScanned = token;
 			}
 			if (token.Type == TokenType.RightParen) {
 				tokenList.Add(token);
