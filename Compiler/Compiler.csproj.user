@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>test1[fail].txt websiteTest1[PASS].txt website2[PASS].txt website3[PASS].txt</StartArguments>
+    <StartArguments>..\cs480\tests\milestone2\test0[fail].txt ..\cs480\\tests\milestone2\test1.txt ..\cs480\tests\milestone2\test2.txt ..\cs480\tests\milestone2\test3.txt</StartArguments>
+    <StartWorkingDirectory>
+    </StartWorkingDirectory>
   </PropertyGroup>
 </Project>

@@ -563,7 +563,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			ValidateExpectedVsActualTokens(expectedTokens, actualTokens);
 		}
-        [TestMethod]
+		[TestMethod]
 		public void AnalyzeCrazyEscapeCharacterString_Test()
 		{
 			_testScanner = new Scanner();
@@ -577,7 +577,7 @@ namespace CompilerTester.LexicalAnalyzerTests
 
 			List<Token> actualTokens = new List<Token>();
 
-            string inputString = "(assign thisVar \"This is \\\"suppose\\\" to be \\\"something\\\" \\n ormal.\\; \")";
+			string inputString = "(assign thisVar \"This is \\\"suppose\\\" to be \\\"something\\\" \\n ormal.\\; \")";
 			while (inputString.Any()) {
 				var token = _testScanner.GetNextToken(ref inputString);
 				actualTokens.Add(token);

@@ -22,7 +22,7 @@ namespace MilestoneTwo
 				Parser parser = new Parser();
 
 				Console.WriteLine("Processing File {0}", file);
-				bool expectPass = file.Contains("pass", StringComparison.OrdinalIgnoreCase);
+				bool expectFileToFail = file.Contains("fail", StringComparison.OrdinalIgnoreCase);
 
 				if (args.Length == 0) {
 					Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../file1.txt ../file2.txt\"");
@@ -35,7 +35,7 @@ namespace MilestoneTwo
 				}
 				catch (InvalidDataException) {
 				
-					if(expectPass){
+					if(expectFileToFail){
 						Console.WriteLine("Expected: {0} to PASS. Actual: FAIL", file); 	
 					}
 					else{
