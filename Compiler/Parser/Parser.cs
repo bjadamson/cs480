@@ -46,6 +46,11 @@ namespace Compiler.Parser
 
 				last = scanner.GetNextToken(ref fileContents);
 				ParseExpressionHelper(ref fileContents);
+
+				if (fileContents.Any()) {
+					last = scanner.GetNextToken(ref fileContents);
+					goto begin;
+				}
 			}
 			while (last.Type != TokenType.LeftParen && last.Type != TokenType.RightParen) {
 				tokenList.Add(last);
@@ -120,7 +125,7 @@ namespace Compiler.Parser
 				catch (InvalidDataException ide) {
 					//var message = ide.Message.ToString() == string.Empty ? expressionBuilder.ToString() : ide.Message.ToString();
 					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(ide.Message.ToString(), ExpressionParseSucces.FAIL));
-					fileContents = fileContents.Remove(0, ide.Message.Length);
+					fileContents = string.Empty;
 				}
 				catch (InvalidOperationException ioe) {
 					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(ioe.Message.ToString(), ExpressionParseSucces.FAIL));
