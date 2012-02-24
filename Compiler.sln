@@ -7,9 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		tests\milestone2\test0.txt = tests\milestone2\test0.txt
 		tests\milestone2\test1.txt = tests\milestone2\test1.txt
+		tests\milestone2\test10.txt = tests\milestone2\test10.txt
+		tests\milestone2\test11.txt = tests\milestone2\test11.txt
+		tests\milestone2\test12.txt = tests\milestone2\test12.txt
+		tests\milestone2\test13.txt = tests\milestone2\test13.txt
+		tests\milestone2\test14.txt = tests\milestone2\test14.txt
 		tests\milestone2\test2.txt = tests\milestone2\test2.txt
 		tests\milestone2\test3.txt = tests\milestone2\test3.txt
 		tests\milestone2\test4.txt = tests\milestone2\test4.txt
+		tests\milestone2\test5.txt = tests\milestone2\test5.txt
+		tests\milestone2\test6.txt = tests\milestone2\test6.txt
+		tests\milestone2\test7.txt = tests\milestone2\test7.txt
+		tests\milestone2\test8.txt = tests\milestone2\test8.txt
+		tests\milestone2\test9.txt = tests\milestone2\test9.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompilerTester", "CompilerTester\CompilerTester.csproj", "{5198FEDF-BE94-4433-95B2-3925624D17E3}"

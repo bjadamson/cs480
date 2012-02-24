@@ -133,7 +133,7 @@ namespace Compiler.Parser
 				catch (InvalidOperationException ioe) {
 					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(ioe.Message.ToString(), ExpressionParseSucces.FAIL));
 					fileContents = string.Empty;
-					
+
 				}
 
 				expressionBuilder.Clear();
@@ -147,17 +147,22 @@ namespace Compiler.Parser
 		}
 
 		private void BeginParsingFile(ref string fileContents) {
-			var firstToken = scanner.GetNextToken(ref fileContents);
-			last = firstToken;
-
-			if (firstToken.Type != TokenType.LeftParen) {
-				throw new InvalidDataException(string.Format("Unexpected initial token {{{0} : {1}}}, expected {{'(' }}", firstToken.Key, firstToken.Type));
-			}
-
-			ParseAllExpressions(ref fileContents, firstToken);
-
 			if (fileContents.Any()) {
-				throw new InvalidDataException(string.Format("Unexpected token {0}{1}, expected end of file.", last.Key, last.Type));
+				var firstToken = scanner.GetNextToken(ref fileContents);
+				last = firstToken;
+
+				if (firstToken.Type != TokenType.LeftParen) {
+					Console.WriteLine("Expression: '{0}' does not begin with '(', invalid.", fileContents);
+				}
+
+				ParseAllExpressions(ref fileContents, firstToken);
+
+				if (fileContents.Any()) {
+					Console.WriteLine("Unexpected token \'{0}{1}\', expected end of file.", last.Key, last.Type);
+				}
+			}
+			else {
+				Console.WriteLine("File contains no tokens.\n\n");
 			}
 		}
 
