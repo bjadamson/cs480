@@ -59,7 +59,7 @@ namespace Compiler.Parser
 
 				if (!fileContents.Any()) {
 					// expected left/right parenthesis
-					throw new InvalidDataException();
+					throw new InvalidDataException(expressionBuilder.ToString());
 				}
 				last = scanner.GetNextToken(ref fileContents);
 			}
@@ -80,6 +80,9 @@ namespace Compiler.Parser
 			else if (last.Type == TokenType.RightParen) {
 
 				tokenList.Add(last);
+				if (!fileContents.Any()) {
+					throw new InvalidDataException(expressionBuilder.ToString() + "\n");
+				}
 				scanner.RemoveTokenFromBeginning(ref fileContents, last);
 				expressionBuilder.Append(last.Key + " ");
 			}
@@ -123,13 +126,14 @@ namespace Compiler.Parser
 					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(expressionBuilder.ToString(), ExpressionParseSucces.PASS));
 				}
 				catch (InvalidDataException ide) {
-					//var message = ide.Message.ToString() == string.Empty ? expressionBuilder.ToString() : ide.Message.ToString();
-					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(ide.Message.ToString(), ExpressionParseSucces.FAIL));
+					var message = ide.Message.ToString() == string.Empty ? expressionBuilder.ToString() : ide.Message.ToString();
+					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(expressionBuilder.ToString(), ExpressionParseSucces.FAIL));
 					fileContents = string.Empty;
 				}
 				catch (InvalidOperationException ioe) {
 					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(ioe.Message.ToString(), ExpressionParseSucces.FAIL));
 					fileContents = string.Empty;
+					
 				}
 
 				expressionBuilder.Clear();
