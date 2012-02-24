@@ -10,6 +10,8 @@ namespace Compiler.LexicalAnalyzer
 {
 	public class Scanner
 	{
+		private List<Token> scannedTokens = new List<Token>();
+
 		/// <summary>
 		/// Remove the token from the beginning of the string s
 		/// </summary>
@@ -33,17 +35,21 @@ namespace Compiler.LexicalAnalyzer
 			var listOfPossibleTypes = new List<KeyValuePair<TokenType, int>>(10);
 
 			var sb = new StringBuilder(s.First().ToString());
+			Token token = null;
 			int posInString = 0;
 			int tokenLength = 0;
 			bool automatonAcceptFlag = false;
 
 			if (sb[0] == '(') {
-				return new Token("(", TokenType.LeftParen);
+				token = new Token("(", TokenType.LeftParen);
 			}
 			else if(sb[0] == ')') {
-				return new Token(")", TokenType.RightParen);
+				token = new Token(")", TokenType.RightParen);
 			}
-
+			if (token != null) {
+				scannedTokens.Add(token);
+				return token;
+			}
 			do {
 				if (sb[sb.Length - 1] == ')' && !StringAutomaton.ParsePartialString(sb.ToString())) {
 
@@ -100,15 +106,15 @@ namespace Compiler.LexicalAnalyzer
 
 			if (check.Contains(TokenType.Integer) && !check.Contains(TokenType.Real)) {
 				foreach (var c in sb.ToString()) {
-					if (!char.IsDigit(c) && c!= ' ') {
-						throw new InvalidDataException(string.Format("Lexical analyzer could not tokenize token {0}", sb.ToString()));
+					if (!char.IsDigit(c) && c != ' ') {
+						throw new InvalidOperationException(string.Format("Lexical scanner could not parse token {0}, exiting.", sb.ToString()));
 					}
 				}
 			}
 			if(check.Contains(TokenType.Real)) {
 				foreach (var c in sb.ToString()) {
 					if (!char.IsDigit(c) && c != '.' && c != ' ') {
-						throw new InvalidDataException(string.Format("Lexical analyzer could not tokenize token {0}", sb.ToString()));
+						throw new InvalidOperationException(string.Format("Lexical scanner could not parse token {0}, exiting.", sb.ToString()));
 					}
 				}
 			}
@@ -124,10 +130,16 @@ namespace Compiler.LexicalAnalyzer
 				.First();
 
 			// construct the token with result
-			return new Token(
+			token =  new Token(
 				sb.ToString().Substring(0, result.Value + 1),
 				result.Key);
-	
+
+			scannedTokens.Add(token);
+			return token;
+		}
+
+		internal void ClearScannedTokens() {
+			scannedTokens.Clear();
 		}
 	}
 }

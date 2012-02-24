@@ -31,22 +31,11 @@ namespace MilestoneTwo
 
 				try {
 					parser.ParseFile(file);
-					parser.PrintTokens();
+					//parser.PrintTokens();
 				}
-				catch (InvalidDataException) {
-				
-					if(!expectFileToFail){
-						Console.WriteLine("Expected: {0} to PASS. Actual: FAIL", file); 	
-					}
-					else{
-						Console.WriteLine("Expected: {0} to FAIL. Actual: FAIL", file);
-					}
-					Console.WriteLine("");
 
-				}
 				catch (FileNotFoundException fnf){
-					Console.WriteLine(fnf.Message + "\n" + "\n");
-					
+					Console.WriteLine(fnf.Message + "\n" + "\n");					
 				}	
 			}
 			// only on windows do we need to read a line
