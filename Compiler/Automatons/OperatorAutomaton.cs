@@ -7,13 +7,18 @@ namespace Compiler.Automatons
 {
     public static class OperatorAutomaton
     {
+		private static List<string> operators = new List<string>()
+		{
+			"and", "or", "not", "iff", "cos", "tan", "sin", "exp"
+		};
+
         public static bool Parse(string s)
         {
 			// For this language, operators are all ALWAYS three or less character.
 			if (s.Length > 3) { return false; }
 
 			if (s.Length > 1) {
-				return s == "and" || s == "or" || s == "not" || s == "iff";
+				return operators.Contains(s);
 			}
 
 			switch (s.First()) {

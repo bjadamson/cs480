@@ -174,7 +174,7 @@ namespace Compiler.Parser
 				}
 			}
 			else {
-				//Console.WriteLine("File contains no tokens.\n\n");
+				Console.WriteLine("\\ File contains no tokens.\n\n");
 			}
 		}
 

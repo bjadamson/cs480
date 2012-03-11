@@ -22,7 +22,7 @@ namespace MilestoneTwo
 				Parser parser = new Parser();
 
 				if (args.Length == 0) {
-					Console.WriteLine("Please specify input file for lexical analysis. Usage: make run ARG=\"../file1.txt ../file2.txt\"");
+					Console.WriteLine("\\ Please specify input file for lexical analysis. Usage: make run ARG=\"../file1.txt ../file2.txt\"");
 					return;
 				}
 
