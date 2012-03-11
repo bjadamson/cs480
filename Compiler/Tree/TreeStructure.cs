@@ -63,6 +63,8 @@ namespace Compiler.Tree
 			else{
 				Console.Write(node.Token.Key);
 			}
+
+			Console.Write(" ");
 		}
 
 		public void PrintTreePostTraversal() {
