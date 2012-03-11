@@ -5,6 +5,7 @@ using System.Text;
 using Compiler.LexicalAnalyzer;
 using Tokens;
 using System.IO;
+using Compiler.Tree;
 
 namespace Compiler.Parser
 {
@@ -14,7 +15,7 @@ namespace Compiler.Parser
 	{
 		private Token last = null;
 		private Scanner scanner = new Scanner();
-		private List<Token> tokenList = new List<Token>();
+		private List<Token> allParsedTokens = new List<Token>();
 		private StringBuilder expressionBuilder = new StringBuilder();
 		private List<Tuple<string, ExpressionParseSucces>> builtExpressions = new List<Tuple<string, ExpressionParseSucces>>();
 
@@ -34,18 +35,18 @@ namespace Compiler.Parser
 		public void PrintTokens() {
 			Console.WriteLine(
 				string.Join("",
-					tokenList.Select(item => string.Format("{0}\t:\t{1}\n", item.Key, item.Type))));
+					allParsedTokens.Select(item => string.Format("{0}\t:\t{1}\n", item.Key, item.Type))));
 		}
 
-		private void ParseExpressionHelper(ref string fileContents) {
+		private void ParseExpressionHelper(ref string fileContents, List<Token> tokens) {
 		begin:
 			if (last.Type == TokenType.LeftParen) {
-				tokenList.Add(last);
+				tokens.Add(last);
 				scanner.RemoveTokenFromBeginning(ref fileContents, last);
 				expressionBuilder.Append(last.Key + " ");
 
 				last = scanner.GetNextToken(ref fileContents);
-				ParseExpressionHelper(ref fileContents);
+				ParseExpressionHelper(ref fileContents, tokens);
 
 				if (fileContents.Any()) {
 					last = scanner.GetNextToken(ref fileContents);
@@ -53,7 +54,7 @@ namespace Compiler.Parser
 				}
 			}
 			while (last.Type != TokenType.LeftParen && last.Type != TokenType.RightParen) {
-				tokenList.Add(last);
+				tokens.Add(last);
 				scanner.RemoveTokenFromBeginning(ref fileContents, last);
 				expressionBuilder.Append(last.Key + " ");
 
@@ -65,12 +66,12 @@ namespace Compiler.Parser
 			}
 			if (last.Type == TokenType.LeftParen) {
 
-				tokenList.Add(last);
+				tokens.Add(last);
 				scanner.RemoveTokenFromBeginning(ref fileContents, last);
 				expressionBuilder.Append(last.Key + " ");
 
 				last = scanner.GetNextToken(ref fileContents);
-				ParseExpressionHelper(ref fileContents);
+				ParseExpressionHelper(ref fileContents, tokens);
 
 				if (fileContents.Any()) {
 					last = scanner.GetNextToken(ref fileContents);
@@ -79,7 +80,7 @@ namespace Compiler.Parser
 			}
 			else if (last.Type == TokenType.RightParen) {
 
-				tokenList.Add(last);
+				tokens.Add(last);
 				if (!fileContents.Any()) {
 					throw new InvalidDataException(expressionBuilder.ToString() + "\n");
 				}
@@ -93,7 +94,7 @@ namespace Compiler.Parser
 		/// </summary>
 		/// <param name="fileContents"></param>
 		/// <param name="token"></param>
-		private void ParseExpression(ref string fileContents) {
+		private void ParseExpression(ref string fileContents, List<Token> tokens) {
 
 			last = scanner.GetNextToken(ref fileContents);
 			expressionBuilder.Append(last.Key + " ");
@@ -102,28 +103,39 @@ namespace Compiler.Parser
 				throw new InvalidDataException(expressionBuilder.ToString().Replace(" ", ""));
 			}
 
-			tokenList.Add(last);
+			tokens.Add(last);
 			scanner.RemoveTokenFromBeginning(ref fileContents, last);
 
 			last = scanner.GetNextToken(ref fileContents);
-			ParseExpressionHelper(ref fileContents);
+			ParseExpressionHelper(ref fileContents, tokens);
 
 		}
 
 		private void ParseAllExpressions(ref string fileContents, Token token) {
-
+	
 			// If there is anything in fileContents, that means we are parsing the next expression within the file.
 			while (fileContents.Any()) {
 
 				try {
-					ParseExpression(ref fileContents);
+					List<Token> tokens = new List<Token>();
+					ParseExpression(ref fileContents, tokens);
 
-					if (tokenList.Count == 2 &&
-							tokenList[0].Type == TokenType.LeftParen && tokenList[1].Type == TokenType.RightParen) {
+					if (tokens.Count == 2 &&
+							tokens[0].Type == TokenType.LeftParen && tokens[1].Type == TokenType.RightParen) {
 						throw new InvalidDataException(string.Format("Parse error! Production rules do not allow S->epsilon."));
 					}
 
+					allParsedTokens.AddRange(tokens);
 					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(expressionBuilder.ToString(), ExpressionParseSucces.PASS));
+
+					TreeStructure tree = new TreeStructure();
+					foreach (var t in tokens
+						.Where(tkn => tkn.Type != TokenType.LeftParen)
+						.Where(tkn => tkn.Type != TokenType.RightParen)) {
+						tree.AddToken(t);
+					}
+
+					tree.PrintTreePostTraversal();
 				}
 				catch (InvalidDataException ide) {
 					var message = ide.Message.ToString() == string.Empty ? expressionBuilder.ToString() : ide.Message.ToString();
@@ -135,15 +147,13 @@ namespace Compiler.Parser
 					fileContents = string.Empty;
 
 				}
-
 				expressionBuilder.Clear();
-				tokenList.Clear();
 				scanner.ClearScannedTokens();
 			}
 
-			builtExpressions.ForEach(list =>
-				Console.WriteLine(list.Item1 + string.Format("\t{0}", list.Item2.ToString())));
-			Console.WriteLine("\n");
+			//builtExpressions.ForEach(list =>
+			//    Console.WriteLine(list.Item1 + string.Format("\t{0}", list.Item2.ToString())));
+			//Console.WriteLine("\n");
 		}
 
 		private void BeginParsingFile(ref string fileContents) {
@@ -162,7 +172,7 @@ namespace Compiler.Parser
 				}
 			}
 			else {
-				Console.WriteLine("File contains no tokens.\n\n");
+				//Console.WriteLine("File contains no tokens.\n\n");
 			}
 		}
 

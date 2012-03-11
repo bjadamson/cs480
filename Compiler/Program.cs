@@ -21,7 +21,7 @@ namespace MilestoneTwo
 			foreach (var file in string.Join(" ", args).Split(' ')) {
 				Parser parser = new Parser();
 
-				Console.WriteLine("Processing File {0}", file);
+				//Console.WriteLine("Processing File {0}", file);
 				bool expectFileToFail = file.Contains("fail", StringComparison.OrdinalIgnoreCase);
 
 				if (args.Length == 0) {

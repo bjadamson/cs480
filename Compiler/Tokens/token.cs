@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace Tokens
 {
@@ -17,6 +18,10 @@ namespace Tokens
 		{
             Key = key;
             Type = type;
+
+			if (type == TokenType.Real) {
+				Key += "e";
+			}
 		}
 
 		public override bool Equals(object obj)

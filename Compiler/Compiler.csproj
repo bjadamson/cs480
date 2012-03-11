@@ -72,6 +72,8 @@
     <Compile Include="Tokens\token.cs" />
     <Compile Include="Tokens\variablelist.cs" />
     <Compile Include="Tokens\while.cs" />
+    <Compile Include="Tree\TreeStructure.cs" />
+    <Compile Include="Tree\TreeNode.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
