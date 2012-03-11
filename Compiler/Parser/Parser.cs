@@ -138,11 +138,12 @@ namespace Compiler.Parser
 					tree.PrintTreePostTraversal();
 				}
 				catch (InvalidDataException ide) {
-					var message = ide.Message.ToString() == string.Empty ? expressionBuilder.ToString() : ide.Message.ToString();
+					Console.WriteLine(ide.Message.ToString() == string.Empty ? "\\ " + expressionBuilder.ToString() : "\\ " + ide.Message.ToString());
 					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(expressionBuilder.ToString(), ExpressionParseSucces.FAIL));
 					fileContents = string.Empty;
 				}
 				catch (InvalidOperationException ioe) {
+					Console.WriteLine("\\ " + ioe.Message.ToString());
 					builtExpressions.Add(new Tuple<string, ExpressionParseSucces>(ioe.Message.ToString(), ExpressionParseSucces.FAIL));
 					fileContents = string.Empty;
 
@@ -162,13 +163,14 @@ namespace Compiler.Parser
 				last = firstToken;
 
 				if (firstToken.Type != TokenType.LeftParen) {
-					Console.WriteLine("Expression: '{0}' does not begin with '(', invalid.", fileContents);
+					Console.WriteLine("\\ Expression: '{0}' does not begin with '(', invalid.", fileContents);
+					return;
 				}
 
 				ParseAllExpressions(ref fileContents, firstToken);
 
 				if (fileContents.Any()) {
-					Console.WriteLine("Unexpected token \'{0}{1}\', expected end of file.", last.Key, last.Type);
+					Console.WriteLine("\\ Unexpected token \'{0}{1}\', expected end of file.", last.Key, last.Type);
 				}
 			}
 			else {
