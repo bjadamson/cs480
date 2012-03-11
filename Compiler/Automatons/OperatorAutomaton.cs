@@ -7,7 +7,7 @@ namespace Compiler.Automatons
 {
     public static class OperatorAutomaton
     {
-		private static List<string> operators = new List<string>()
+		public static List<string> operators = new List<string>()
 		{
 			"and", "or", "not", "iff", "cos", "tan", "sin", "exp"
 		};

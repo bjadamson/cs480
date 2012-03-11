@@ -8,6 +8,10 @@ namespace Compiler.Tree
 {
 	public class TreeStructure
 	{
+		private List<string> floatingPointOperators = new List<string>() {
+			"sin", "tan", "cos", "exp", 
+		};
+
 		TreeNode rootNode = null;
 		TreeNode sentinel = null;
 
@@ -60,7 +64,22 @@ namespace Compiler.Tree
 			else if (node.Token.Type == TokenType.Real) {
 				Console.Write(node.Token.Key + "e");
 			}
-			else{
+			else if (node.Token.Type == TokenType.Operator) {
+				if (floatingPointOperators.Contains(node.Token.Key)) {
+					Console.Write("f" + node.Token.Key);
+				}
+				else if (node.Token.Key == "iff") {
+					// Not done
+					Console.Write("iff");
+				}
+				else if (node.Token.Key == "not") {
+					Console.Write("invert");
+				}
+				else {
+					Console.Write(node.Token.Key);
+				}
+			}
+			else {
 				Console.Write(node.Token.Key);
 			}
 
