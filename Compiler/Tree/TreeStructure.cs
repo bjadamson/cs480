@@ -52,9 +52,17 @@ namespace Compiler.Tree
 
 			PrintTreePostTraversalHelper(node.LeftChild);
 			PrintTreePostTraversalHelper(node.RightChild);
-			Console.Write("{0} ", node.Token.Type == TokenType.Real
-				? node.Token.Key + "e"
-				: node.Token.Key);
+
+			if (node.Token.Type == TokenType.String) {
+
+				Console.Write("s\" " + node.Token.Key.Substring(1));
+			}
+			else if (node.Token.Type == TokenType.Real) {
+				Console.Write(node.Token.Key + "e");
+			}
+			else{
+				Console.Write(node.Token.Key);
+			}
 		}
 
 		public void PrintTreePostTraversal() {
