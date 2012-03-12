@@ -14,6 +14,7 @@ namespace Compiler.Tree
 
 		TreeNode rootNode = null;
 		TreeNode sentinel = null;
+        bool stringConcat = false;
 
 		public void AddToken(Token token) {
 			if (rootNode == null) {
@@ -57,9 +58,22 @@ namespace Compiler.Tree
 			PrintTreePostTraversalHelper(node.LeftChild);
 			PrintTreePostTraversalHelper(node.RightChild);
 
-			if (node.Token.Type == TokenType.String) {
-
-				Console.Write("s\" " + node.Token.Key.Substring(1));
+            if (node.Token.Type == TokenType.String) {
+                    if (node.Parent != null && 
+                        node.Parent.RightChild != null && 
+                        node.Parent.Token.Key == "+" && 
+                        node.Parent.RightChild.Token.Type == TokenType.String) {
+                            node.Token.Key = node.Token.Key.Remove(0, 1);
+                            node.Token.Key = node.Token.Key.Remove(node.Token.Key.Length - 1, 1);
+                            node.Parent.RightChild.Token.Key = node.Parent.RightChild.Token.Key.Remove(0, 1);
+                            node.Parent.RightChild.Token.Key = node.Parent.RightChild.Token.Key.Remove(node.Parent.RightChild.Token.Key.Length - 1, 1);
+                            Console.Write("s\" " + node.Token.Key + " " + node.Parent.RightChild.Token.Key + "\"");
+                            node.Parent.RightChild = null;
+                            stringConcat = true;
+                    } 
+                    else {
+                        Console.Write("s\" " + node.Token.Key.Substring(1));
+                    }
 			}
 			else if (node.Token.Type == TokenType.Real) {
 				Console.Write(node.Token.Key + "e");
@@ -69,15 +83,19 @@ namespace Compiler.Tree
 					Console.Write("f" + node.Token.Key);
 				}
 				else if (node.Token.Key == "iff") {
-					// Not done
-					Console.Write("iff");
+					Console.Write("invert xor");
 				}
 				else if (node.Token.Key == "not") {
 					Console.Write("invert");
 				}
+                else if(stringConcat) {
+                    // A string concat has occured and we reset the flag and don't print out the +
+                    stringConcat = false;
+                }
 				else {
 					Console.Write(node.Token.Key);
 				}
+
 			}
 			else {
 				Console.Write(node.Token.Key);
