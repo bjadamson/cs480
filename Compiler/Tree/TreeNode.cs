@@ -48,5 +48,10 @@ namespace Compiler.Tree
 				return HasLeftChild() && HasRightChild();
 			}
 		}
+
+        public void FormatStringConcat() {
+            Token.Key = Token.Key.Substring(1, Token.Key.Length - 1);
+            Parent.RightChild.Token.Key = Parent.RightChild.Token.Key.Substring(0, Parent.RightChild.Token.Key.Length);
+        }
 	}
 }
