@@ -55,23 +55,9 @@
     <Compile Include="Parser\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tokens\assign.cs" />
-    <Compile Include="Tokens\atom.cs" />
-    <Compile Include="Tokens\bool.cs" />
-    <Compile Include="Tokens\constant.cs" />
-    <Compile Include="Tokens\expr.cs" />
-    <Compile Include="Tokens\exprlist.cs" />
-    <Compile Include="Tokens\if.cs" />
-    <Compile Include="Tokens\int.cs" />
-    <Compile Include="Tokens\let.cs" />
-    <Compile Include="Tokens\operator.cs" />
-    <Compile Include="Tokens\print.cs" />
-    <Compile Include="Tokens\real.cs" />
-    <Compile Include="Tokens\stmt.cs" />
-    <Compile Include="Tokens\string.cs" />
     <Compile Include="Tokens\token.cs" />
-    <Compile Include="Tokens\variablelist.cs" />
-    <Compile Include="Tokens\while.cs" />
+    <Compile Include="Tree\TreeStructure.cs" />
+    <Compile Include="Tree\TreeNode.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

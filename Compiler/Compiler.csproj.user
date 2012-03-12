@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>..\cs480\tests\milestone2\test0.txt ..\cs480\\tests\milestone2\test1.txt ..\cs480\tests\milestone2\test2.txt ..\cs480\tests\milestone2\test3.txt ..\cs480\tests\milestone2\test4.txt</StartArguments>
+    <StartArguments>..\cs480\tests\milestone2\test0.txt ..\cs480\\tests\milestone2\test1.txt ..\cs480\tests\milestone2\test2.txt ..\cs480\tests\milestone2\test3.txt ..\cs480\tests\milestone2\test4.txt ..\cs480\tests\milestone2\test5.txt ..\cs480\tests\milestone2\test6.txt ..\cs480\tests\milestone2\test7.txt ..\cs480\tests\milestone2\test8.txt ..\cs480\tests\milestone2\test9.txt ..\cs480\tests\milestone2\test10.txt ..\cs480\tests\milestone2\test11.txt ..\cs480\tests\milestone2\test12.txt ..\cs480\tests\milestone2\test13.txt ..\cs480\tests\milestone2\test14.txt</StartArguments>
     <StartWorkingDirectory>
     </StartWorkingDirectory>
   </PropertyGroup>

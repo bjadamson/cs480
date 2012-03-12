@@ -130,7 +130,7 @@ namespace Compiler.LexicalAnalyzer
 				.First();
 
 			// construct the token with result
-			token =  new Token(
+			token = new Token(
 				sb.ToString().Substring(0, result.Value + 1),
 				result.Key);
 
