@@ -1,3 +1,4 @@
+<<<<<<< .merge_file_a10068
 ("BEGINNING OF TEST 2")
 (+ 1.5 2.5)
 ("EXPECTED: 4.0")
@@ -12,3 +13,33 @@
 (- 1.0)
 ("EXPECTED: -1.0")
 ("END OF TEST 2")
+=======
+((((("Testing very basic functionality")))))
+<<<<<<< .merge_file_a06428
+<<<<<<< .merge_file_a07644
+<<<<<<< .merge_file_a04016
+<<<<<<< .merge_file_a07856
+(+ "Left Child" "Right Child")
+=======
+>>>>>>> .merge_file_a07744
+=======
+>>>>>>> .merge_file_a04004
+=======
+>>>>>>> .merge_file_a04668
+=======
+>>>>>>> .merge_file_a01076
+(+ and 2 not 3 + 5 6)
+(- 1 2)
+("this should = -1")
+(* 1 2)
+("this should = 2")
+(/ 1 2)
+("this should = .5")
+(% 1 2)
+("this should = 0")
+(= 1 2)
+("this should = ?")
+(< 1 2)
+("this should = false")
+((((("All tests should pass")))))
+>>>>>>> .merge_file_a10204
