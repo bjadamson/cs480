@@ -1,4 +1,6 @@
-("BEGINNING TEST THREE")
-(+ "string" (+ ("test" "two")))
-(+ "stringOne" (+ "stringTwo" (+ "stringThree" (+ "stringFour" "stringFive"))))
-("END OF TEST THREE")
+(println ("BEGINNING TEST THREE"))
+(println (+ "string" (+ ("test" "two"))))
+(println (+ "stringOne" (+ "stringTwo" (+ "stringThree" (+ "stringFour" "stringFive")))))
+(println ("END OF TEST THREE"))
+
+
