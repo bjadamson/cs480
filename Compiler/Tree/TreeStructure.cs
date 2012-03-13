@@ -101,11 +101,7 @@ namespace Compiler.Tree {
                     else if (node.LeftChild.Token.Type == TokenType.Integer) {
                         Console.Write("negate");
                     }
-                }
-                else if (sentinel.LeftChild.Token.Type == TokenType.Real) {
-                    Console.Write("f" + node.Token.Key);
-                }
-                
+                }                
                 else if (node.Token.Key == "%") {
                     if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
                         Console.Write("fmod");
@@ -127,6 +123,9 @@ namespace Compiler.Tree {
                     else {
                         Console.Write(". cr");
                     }
+                }
+                else if (sentinel.LeftChild.Token.Type == TokenType.Real) {
+                    Console.Write("f" + node.Token.Key);
                 }
                 else {
                     Console.Write(node.Token.Key);
