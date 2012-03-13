@@ -6,11 +6,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{331E63DF-0FAE-4AC4-A470-9B9B37602CE1}"
 	ProjectSection(SolutionItems) = preProject
 		tests\milestone2\test0.txt = tests\milestone2\test0.txt
+		tests\milestone2\test1.txt = tests\milestone2\test1.txt
 		tests\milestone2\test10.txt = tests\milestone2\test10.txt
 		tests\milestone2\test11.txt = tests\milestone2\test11.txt
 		tests\milestone2\test12.txt = tests\milestone2\test12.txt
 		tests\milestone2\test13.txt = tests\milestone2\test13.txt
 		tests\milestone2\test14.txt = tests\milestone2\test14.txt
+		tests\milestone2\test2.txt = tests\milestone2\test2.txt
 		tests\milestone2\test3.txt = tests\milestone2\test3.txt
 		tests\milestone2\test4.txt = tests\milestone2\test4.txt
 		tests\milestone2\test5.txt = tests\milestone2\test5.txt

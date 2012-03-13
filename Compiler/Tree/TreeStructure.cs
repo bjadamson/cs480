@@ -94,9 +94,6 @@ namespace Compiler.Tree {
                     // A string concat has occured and we reset the flag and don't print out the +
                     --needsConcat;
                 }
-                else if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
-                    Console.Write("f" + node.Token.Key);
-                }
                 else if (node.RightChild == null && node.Token.Key == "-") {
                     if (node.LeftChild.Token.Type == TokenType.Real) {
                         Console.Write("fnegate");
@@ -105,12 +102,27 @@ namespace Compiler.Tree {
                         Console.Write("negate");
                     }
                 }
+                else if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
+                    Console.Write("f" + node.Token.Key);
+                }
+                
                 else if (node.Token.Key == "%") {
                     if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
                         Console.Write("fmod");
                     }
                     else if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
                         Console.Write("mod");
+                    }
+                }
+                else if (node.Token.Key == "println") {
+                    if (sentinel.LeftChild.Token.Type == TokenType.String) {
+                        Console.Write("type cr");
+                    }
+                    else if (sentinel.LeftChild.Token.Type == TokenType.Real) {
+                        Console.Write("f. cr");
+                    }
+                    else {
+                        Console.Write(". cr");
                     }
                 }
                 else {

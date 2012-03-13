@@ -1,38 +1,6 @@
-<<<<<<< .merge_file_a09432
-<<<<<<< .merge_file_a09272
-("BEGINNING TEST THREE")
-(+ "string" (+ ("test" "two")))
-(+ "stringOne" (+ "stringTwo" (+ "stringThree" (+ "stringFour" "stringFive"))))
-("END OF TEST THREE")
-=======
-=======
->>>>>>> .merge_file_a02780
-("Testing")
-(1 * ( 1 2))
-("This should = 2")
-(+ 1 (* (+ 2 3) 7))
-<<<<<<< .merge_file_a07364
-<<<<<<< .merge_file_a05980
-<<<<<<< .merge_file_a02520
-<<<<<<< .merge_file_a03824
-("This should = 36")
-(+ (+ 5.5 5.5)(* 2.0 (- 7.5 1.5)))
-("This should = 22")
-(iff 1 2)
-("This should = 1 2 invert xor")
-(+ "test" "test")
-("All of these tests should pass")
-=======
-=======
->>>>>>> .merge_file_a07580
-=======
->>>>>>> .merge_file_a00280
-=======
->>>>>>> .merge_file_a06024
-(+ (= 5.0 11.9)(* 2 (- 76 1)))
-(((((("All of these tests should pass"))))))
->>>>>>> .merge_file_a03032
-<<<<<<< .merge_file_a09432
->>>>>>> .merge_file_a09584
-=======
->>>>>>> .merge_file_a02780
+(println ("BEGINNING TEST THREE"))
+(println (+ "string" (+ ("test" "two"))))
+(println (+ "stringOne" (+ "stringTwo" (+ "stringThree" (+ "stringFour" "stringFive")))))
+(println ("END OF TEST THREE"))
+
+

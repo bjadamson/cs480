@@ -41,7 +41,8 @@ namespace Compiler.Tree
         }
 
         public bool CorrectNumberChildren() {
-            if (Token.Type == TokenType.Operator && Token.Key == "not") {
+            if (Token.Type == TokenType.Operator 
+                && (Token.Key == "not" || Token.Key == "println")) {
                 return HasLeftChild();
             }
             else {
