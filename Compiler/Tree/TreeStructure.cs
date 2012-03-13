@@ -12,7 +12,8 @@ namespace Compiler.Tree {
 
         TreeNode rootNode = null;
         TreeNode sentinel = null;
-        bool stringConcat = false;
+        int needsConcat = 0;
+        string stringConcat = "";
 
         public void AddToken(Token token) {
             if (rootNode == null) {
@@ -59,12 +60,18 @@ namespace Compiler.Tree {
             if (node.Token.Type == TokenType.String) {
                 if (node.Parent != null
                     && node.Parent.RightChild != null
-                    && node.Parent.Token.Key == "+"
-                    && node.Parent.RightChild.Token.Type == TokenType.String) {
-                    node.FormatStringConcat();
-                    Console.Write("s\" " + node.Token.Key + " " + node.Parent.RightChild.Token.Key);
-                    node.Parent.RightChild = null;
-                    stringConcat = true;
+                    && node.Parent.Token.Key == "+") {
+                        if (node.Parent.RightChild.Token.Type != TokenType.String) {
+                            stringConcat = stringConcat == string.Empty ? node.Token.Key.Substring(1, node.Token.Key.Length - 2) :
+                                                            stringConcat + " " + node.Token.Key.Substring(1, node.Token.Key.Length - 2);
+                            ++needsConcat;
+                        }
+                        else { 
+                            node.FormatStringConcat();
+                            Console.Write("s\" {0}{1}{2} {3}", stringConcat, stringConcat == string.Empty ? "" : " ", node.Token.Key, node.Parent.RightChild.Token.Key);
+                            node.Parent.RightChild = null;
+                            ++needsConcat;
+                        }
                 }
                 else {
                     Console.Write("s\" " + node.Token.Key.Substring(1));
@@ -83,9 +90,9 @@ namespace Compiler.Tree {
                 else if (node.Token.Key == "not") {
                     Console.Write("invert");
                 }
-                else if (stringConcat) {
+                else if (needsConcat > 0) {
                     // A string concat has occured and we reset the flag and don't print out the +
-                    stringConcat = false;
+                    --needsConcat;
                 }
                 else if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
                     Console.Write("f" + node.Token.Key);
@@ -98,16 +105,24 @@ namespace Compiler.Tree {
                         Console.Write("negate");
                     }
                 }
+                else if (node.Token.Key == "%") {
+                    if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
+                        Console.Write("fmod");
+                    }
+                    else if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
+                        Console.Write("mod");
+                    }
+                }
                 else {
                     Console.Write(node.Token.Key);
                 }
-
             }
             else {
                 Console.Write(node.Token.Key);
             }
-
-            Console.Write(" ");
+            if (needsConcat == 0) { 
+                Console.Write(" ");
+            }
         }
 
         public void PrintTreePostTraversal() {

@@ -50,8 +50,8 @@ namespace Compiler.Tree
         }
 
         public void FormatStringConcat() {
-            Token.Key = Token.Key.Substring(1, Token.Key.Length - 1);
-            Parent.RightChild.Token.Key = Parent.RightChild.Token.Key.Substring(0, Parent.RightChild.Token.Key.Length);
+            Token.Key = Token.Key.Substring(1, Token.Key.Length - 2);
+            Parent.RightChild.Token.Key = Parent.RightChild.Token.Key.Substring(1, Parent.RightChild.Token.Key.Length - 1);
         }
     }
 }
