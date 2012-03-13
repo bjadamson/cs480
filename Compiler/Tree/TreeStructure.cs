@@ -102,7 +102,10 @@ namespace Compiler.Tree {
                         Console.Write("negate");
                     }
                 }
-
+                else if (sentinel.LeftChild.Token.Type == TokenType.Real) {
+                    Console.Write("f" + node.Token.Key);
+                }
+                
                 else if (node.Token.Key == "%") {
                     if (node.LeftChild.Token.Type == TokenType.Real && node.RightChild.Token.Type == TokenType.Real) {
                         Console.Write("fmod");
