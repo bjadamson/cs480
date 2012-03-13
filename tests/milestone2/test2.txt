@@ -1,9 +1,12 @@
+<<<<<<< .merge_file_a09432
 <<<<<<< .merge_file_a09272
 ("BEGINNING TEST THREE")
 (+ "string" (+ ("test" "two")))
 (+ "stringOne" (+ "stringTwo" (+ "stringThree" (+ "stringFour" "stringFive"))))
 ("END OF TEST THREE")
 =======
+=======
+>>>>>>> .merge_file_a02780
 ("Testing")
 (1 * ( 1 2))
 ("This should = 2")
@@ -29,4 +32,7 @@
 (+ (= 5.0 11.9)(* 2 (- 76 1)))
 (((((("All of these tests should pass"))))))
 >>>>>>> .merge_file_a03032
+<<<<<<< .merge_file_a09432
 >>>>>>> .merge_file_a09584
+=======
+>>>>>>> .merge_file_a02780
