@@ -20,8 +20,6 @@ namespace Compiler.Automatons
 
         public static bool Parse(string s)
         {
-            //var whitespaceRemoved = s.Remove(' ');
-
             return RegisteredKeywords.Contains(s);
         }
     }

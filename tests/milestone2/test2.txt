@@ -1,5 +1,5 @@
 (((((("Testing Given Functions"))))))
 (1 * ( 1 2))
 (+ 1 (* (+ 2 3) 7))
-(while (= 5 x)(assign x(- x 1)))
+(+ (= 5.0 11.9)(* 2 (- 76 1)))
 (((((("All of these tests should pass"))))))
