@@ -1,4 +1,5 @@
 ((((("Testing very basic functionality")))))
+<<<<<<< .merge_file_a07644
 <<<<<<< .merge_file_a04016
 <<<<<<< .merge_file_a07856
 (+ "Left Child" "Right Child")
@@ -6,6 +7,8 @@
 >>>>>>> .merge_file_a07744
 =======
 >>>>>>> .merge_file_a04004
+=======
+>>>>>>> .merge_file_a04668
 (+ and 2 not 3 + 5 6)
 (- 1 2)
 ("this should = -1")

@@ -2,6 +2,7 @@
 (1 * ( 1 2))
 ("This should = 2")
 (+ 1 (* (+ 2 3) 7))
+<<<<<<< .merge_file_a05980
 <<<<<<< .merge_file_a02520
 <<<<<<< .merge_file_a03824
 ("This should = 36")
@@ -14,6 +15,8 @@
 =======
 =======
 >>>>>>> .merge_file_a07580
+=======
+>>>>>>> .merge_file_a00280
 (+ (= 5.0 11.9)(* 2 (- 76 1)))
 (((((("All of these tests should pass"))))))
 >>>>>>> .merge_file_a03032

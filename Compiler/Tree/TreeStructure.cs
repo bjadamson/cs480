@@ -7,8 +7,8 @@ using Tokens;
 namespace Compiler.Tree {
     public class TreeStructure {
         private List<string> floatingPointOperators = new List<string>() {
-			"sin", "tan", "cos", "exp", 
-		};
+            "sin", "tan", "cos", "exp", 
+        };
 
         TreeNode rootNode = null;
         TreeNode sentinel = null;
