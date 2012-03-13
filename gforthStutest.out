@@ -1,0 +1,41 @@
+stringOne stringTwo stringThree stringFour stringFive
+stringOne stringTwo stringThree stringFour stringFive
+11 
+EXPECTED: 11
+-1 
+EXPECTED: -1
+2 
+EXPECTED: 2
+0 
+EXPECTED: 0
+2 
+EXPECTED: 2
+0 
+EXPECTED: 0
+-1 
+EXPECTED: -1
+-1 
+EXPECTED: -1
+END OF TEST 1
+BEGINNING OF TEST 2
+-2.5 
+EXPECTED: -2.5
+4. 
+EXPECTED: 4.
+6.25 
+EXPECTED: 6.25
+2.5 
+EXPECTED: 2.5
+3. 
+EXPECTED: 3.
+-1. 
+EXPECTED: -1.0
+END OF TEST 2
+BEGINNING TEST THREE
+string test two
+stringOne stringTwo stringThree stringFour stringFive
+END OF TEST THREE
+BEGINNING TEST 4
+1 
+EXPECTED: 1
+4.05089008041547 
