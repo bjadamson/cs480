@@ -1,0 +1,5 @@
+(println ("BEGINNING TEST THREE"))
+(println (+ "string" (+ ("test" "two"))))
+(println (+ "stringOne" (+ "stringTwo" (+ "stringThree" (+ "stringFour"
+"stringFive")))))
+(println ("END OF TEST THREE"))

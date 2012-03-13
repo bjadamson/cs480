@@ -1,0 +1,4 @@
+("BEGINNING TEST 4")
+(+ (+ 4 5) (negate 8))
+(-(+(+ 4 9)(sin (* 2.0e 3.14159265358979)))(mod 2 5))
+("END OF TEST 4")
